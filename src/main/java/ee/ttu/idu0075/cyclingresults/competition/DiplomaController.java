@@ -25,8 +25,8 @@ public class DiplomaController {
     }
 
     @GetMapping(value = "/:id")
-    public ResponseEntity<Diploma> findById(@PathVariable Long diplomaId) {
-        return diplomaService.findById(diplomaId)
+    public ResponseEntity<Diploma> findById(@PathVariable Long id) {
+        return diplomaService.findById(id)
                 .map(diploma -> new ResponseEntity<>(diploma, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

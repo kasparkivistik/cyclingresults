@@ -17,7 +17,6 @@ public class Diploma {
     @GeneratedValue
     private Long id;
     private Long event;
-
     private Date timeOfEvent;
     private String time;
     private Long placement;
