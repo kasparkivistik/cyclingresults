@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -16,9 +17,9 @@ public class Diploma {
     @Id
     @GeneratedValue
     private Long id;
-    private Long event;
+    private String event;
     private Date timeOfEvent;
-    private String time;
+    private LocalDateTime time;
     private Long placement;
     private String ageGroup;
     @ManyToOne
