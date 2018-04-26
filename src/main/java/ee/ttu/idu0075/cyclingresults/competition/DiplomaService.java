@@ -36,4 +36,7 @@ public class DiplomaService {
         return diploma;
     }
 
+    public List<Diploma> findAllCompetitorsWithDiplomas() {
+        return diplomaRepository.findAllCompetitorsWithDiplomas();
+    }
 }

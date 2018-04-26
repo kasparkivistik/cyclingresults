@@ -27,9 +27,9 @@ public class DiplomaController {
         return new ResponseEntity<>(diplomaService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value = ":id")
+    @GetMapping(value = "{id}")
     @ApiOperation(value = "Find a diploma by it's id")
-    public ResponseEntity<Diploma> findById(@PathVariable Long id) {
+    public ResponseEntity<Diploma> findById(@PathVariable("id") Long id) {
         return diplomaService.findById(id)
                 .map(diploma -> new ResponseEntity<>(diploma, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -37,9 +37,16 @@ public class DiplomaController {
 
     @PutMapping(value = "/{diplomaId}/competitor/{competitorId}")
     @ApiOperation(value = "Set competitor to the diploma")
-    public ResponseEntity<Diploma> setCompetitorToDiploma(@PathVariable Long diplomaId, @PathVariable Long competitorId) {
+    public ResponseEntity<Diploma> setCompetitorToDiploma(@PathVariable("diplomaId") Long diplomaId,
+                                                          @PathVariable("competitorId") Long competitorId) {
         return diplomaService.setCompetitorToDiploma(diplomaId, competitorId)
                 .map(diploma -> new ResponseEntity<>(diploma, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping(value = "/competitorDiploma")
+    @ApiOperation(value = "Get all competitors with diplomas")
+    public ResponseEntity<List<Diploma>> findAllCompetitorsWithDiplomas() {
+        return new ResponseEntity<>(diplomaService.findAllCompetitorsWithDiplomas(), HttpStatus.OK);
     }
 }
