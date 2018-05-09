@@ -1,7 +1,7 @@
-package ee.ttu.idu0075.cyclingresults.competition;
+package ee.ttu.idu0075.cyclingresults.rest.competition;
 
 
-import ee.ttu.idu0075.cyclingresults.competitor.Competitor;
+import ee.ttu.idu0075.cyclingresults.rest.competitor.Competitor;
 import lombok.Data;
 
 import javax.persistence.Entity;

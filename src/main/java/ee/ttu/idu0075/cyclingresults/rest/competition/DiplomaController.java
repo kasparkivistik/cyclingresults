@@ -1,4 +1,4 @@
-package ee.ttu.idu0075.cyclingresults.competition;
+package ee.ttu.idu0075.cyclingresults.rest.competition;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;

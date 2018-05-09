@@ -1,4 +1,4 @@
-package ee.ttu.idu0075.cyclingresults.competitor;
+package ee.ttu.idu0075.cyclingresults.rest.competitor;
 
 import org.springframework.data.repository.CrudRepository;
 

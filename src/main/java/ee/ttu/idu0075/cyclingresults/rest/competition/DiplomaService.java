@@ -1,6 +1,6 @@
-package ee.ttu.idu0075.cyclingresults.competition;
+package ee.ttu.idu0075.cyclingresults.rest.competition;
 
-import ee.ttu.idu0075.cyclingresults.competitor.CompetitorService;
+import ee.ttu.idu0075.cyclingresults.rest.competitor.CompetitorService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
