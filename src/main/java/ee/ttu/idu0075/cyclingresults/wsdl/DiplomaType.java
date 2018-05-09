@@ -1,6 +1,8 @@
 
 package ee.ttu.idu0075.cyclingresults.wsdl;
 
+import lombok.Data;
+
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -38,6 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
         "ageGroup",
         "competitor"
 })
+@Data
 public class DiplomaType {
 
     protected long id;
@@ -54,133 +57,5 @@ public class DiplomaType {
     protected String ageGroup;
     @XmlElement(required = true)
     protected CompetitorType competitor;
-
-    /**
-     * Gets the value of the id property.
-     */
-    public long getId() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     */
-    public void setId(long value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the event property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
-    public String getEvent() {
-        return event;
-    }
-
-    /**
-     * Sets the value of the event property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
-    public void setEvent(String value) {
-        this.event = value;
-    }
-
-    /**
-     * Gets the value of the timeOfEvent property.
-     *
-     * @return possible object is
-     * {@link XMLGregorianCalendar }
-     */
-    public XMLGregorianCalendar getTimeOfEvent() {
-        return timeOfEvent;
-    }
-
-    /**
-     * Sets the value of the timeOfEvent property.
-     *
-     * @param value allowed object is
-     *              {@link XMLGregorianCalendar }
-     */
-    public void setTimeOfEvent(XMLGregorianCalendar value) {
-        this.timeOfEvent = value;
-    }
-
-    /**
-     * Gets the value of the time property.
-     *
-     * @return possible object is
-     * {@link XMLGregorianCalendar }
-     */
-    public XMLGregorianCalendar getTime() {
-        return time;
-    }
-
-    /**
-     * Sets the value of the time property.
-     *
-     * @param value allowed object is
-     *              {@link XMLGregorianCalendar }
-     */
-    public void setTime(XMLGregorianCalendar value) {
-        this.time = value;
-    }
-
-    /**
-     * Gets the value of the placement property.
-     */
-    public long getPlacement() {
-        return placement;
-    }
-
-    /**
-     * Sets the value of the placement property.
-     */
-    public void setPlacement(long value) {
-        this.placement = value;
-    }
-
-    /**
-     * Gets the value of the ageGroup property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
-    public String getAgeGroup() {
-        return ageGroup;
-    }
-
-    /**
-     * Sets the value of the ageGroup property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
-    public void setAgeGroup(String value) {
-        this.ageGroup = value;
-    }
-
-    /**
-     * Gets the value of the competitor property.
-     *
-     * @return possible object is
-     * {@link CompetitorType }
-     */
-    public CompetitorType getCompetitor() {
-        return competitor;
-    }
-
-    /**
-     * Sets the value of the competitor property.
-     *
-     * @param value allowed object is
-     *              {@link CompetitorType }
-     */
-    public void setCompetitor(CompetitorType value) {
-        this.competitor = value;
-    }
 
 }

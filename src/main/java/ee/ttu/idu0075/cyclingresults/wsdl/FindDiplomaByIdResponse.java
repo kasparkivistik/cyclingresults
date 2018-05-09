@@ -1,6 +1,8 @@
 
 package ee.ttu.idu0075.cyclingresults.wsdl;
 
+import lombok.Data;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,28 +31,8 @@ import javax.xml.bind.annotation.XmlType;
         "diploma"
 })
 @XmlRootElement(name = "findDiplomaByIdResponse")
+@Data
 public class FindDiplomaByIdResponse {
 
     protected DiplomaType diploma;
-
-    /**
-     * Gets the value of the diploma property.
-     *
-     * @return possible object is
-     * {@link DiplomaType }
-     */
-    public DiplomaType getDiploma() {
-        return diploma;
-    }
-
-    /**
-     * Sets the value of the diploma property.
-     *
-     * @param value allowed object is
-     *              {@link DiplomaType }
-     */
-    public void setDiploma(DiplomaType value) {
-        this.diploma = value;
-    }
-
 }

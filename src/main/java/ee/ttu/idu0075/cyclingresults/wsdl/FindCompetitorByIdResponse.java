@@ -1,6 +1,8 @@
 
 package ee.ttu.idu0075.cyclingresults.wsdl;
 
+import lombok.Data;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,28 +31,8 @@ import javax.xml.bind.annotation.XmlType;
         "competitor"
 })
 @XmlRootElement(name = "findCompetitorByIdResponse")
+@Data
 public class FindCompetitorByIdResponse {
 
     protected CompetitorType competitor;
-
-    /**
-     * Gets the value of the competitor property.
-     *
-     * @return possible object is
-     * {@link CompetitorType }
-     */
-    public CompetitorType getCompetitor() {
-        return competitor;
-    }
-
-    /**
-     * Sets the value of the competitor property.
-     *
-     * @param value allowed object is
-     *              {@link CompetitorType }
-     */
-    public void setCompetitor(CompetitorType value) {
-        this.competitor = value;
-    }
-
 }

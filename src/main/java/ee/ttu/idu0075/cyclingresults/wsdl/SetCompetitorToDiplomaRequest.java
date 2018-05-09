@@ -1,6 +1,8 @@
 
 package ee.ttu.idu0075.cyclingresults.wsdl;
 
+import lombok.Data;
+
 import javax.xml.bind.annotation.*;
 
 
@@ -30,59 +32,11 @@ import javax.xml.bind.annotation.*;
         "competitorId"
 })
 @XmlRootElement(name = "setCompetitorToDiplomaRequest")
+@Data
 public class SetCompetitorToDiplomaRequest {
 
     @XmlElement(required = true)
     protected String token;
     protected long diplomaId;
     protected long competitorId;
-
-    /**
-     * Gets the value of the token property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
-    public String getToken() {
-        return token;
-    }
-
-    /**
-     * Sets the value of the token property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
-    public void setToken(String value) {
-        this.token = value;
-    }
-
-    /**
-     * Gets the value of the diplomaId property.
-     */
-    public long getDiplomaId() {
-        return diplomaId;
-    }
-
-    /**
-     * Sets the value of the diplomaId property.
-     */
-    public void setDiplomaId(long value) {
-        this.diplomaId = value;
-    }
-
-    /**
-     * Gets the value of the competitorId property.
-     */
-    public long getCompetitorId() {
-        return competitorId;
-    }
-
-    /**
-     * Sets the value of the competitorId property.
-     */
-    public void setCompetitorId(long value) {
-        this.competitorId = value;
-    }
-
 }
