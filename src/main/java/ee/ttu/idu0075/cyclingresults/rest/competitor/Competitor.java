@@ -1,6 +1,6 @@
 package ee.ttu.idu0075.cyclingresults.rest.competitor;
 
-import ee.ttu.idu0075.cyclingresults.rest.competition.Diploma;
+import ee.ttu.idu0075.cyclingresults.rest.diploma.Diploma;
 import lombok.Data;
 
 import javax.persistence.Entity;

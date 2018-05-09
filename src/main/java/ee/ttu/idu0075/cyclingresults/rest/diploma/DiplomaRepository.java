@@ -1,4 +1,4 @@
-package ee.ttu.idu0075.cyclingresults.rest.competition;
+package ee.ttu.idu0075.cyclingresults.rest.diploma;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

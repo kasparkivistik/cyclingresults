@@ -1,4 +1,4 @@
-package ee.ttu.idu0075.cyclingresults.rest.competition;
+package ee.ttu.idu0075.cyclingresults.rest.diploma;
 
 import ee.ttu.idu0075.cyclingresults.rest.competitor.CompetitorService;
 import org.springframework.stereotype.Service;
