@@ -1,7 +1,9 @@
-package ee.ttu.idu0075.cyclingresults.soap;
+package ee.ttu.idu0075.cyclingresults.soap.diploma;
 
 import ee.ttu.idu0075._2018.ws.cyclingresults.wsdl.*;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,8 @@ public class DiplomaEndpoint {
 
     public DiplomaService diplomaService;
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addDiploma")
+    @ResponsePayload
     public Diploma save(AddDiplomaRequest request) {
         Diploma diploma = new Diploma();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
@@ -29,6 +33,8 @@ public class DiplomaEndpoint {
         return null;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findDiplomaById")
+    @ResponsePayload
     public Optional<FindDiplomaByIdResponse> findById(FindDiplomaByIdRequest request) {
         FindDiplomaByIdResponse response = new FindDiplomaByIdResponse();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
@@ -39,6 +45,8 @@ public class DiplomaEndpoint {
         return Optional.empty();
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllDiplomas")
+    @ResponsePayload
     public List<FindAllDiplomasResponse> findAll(FindAllDiplomasRequest request) {
         List<FindAllDiplomasResponse> response = new ArrayList<>();
         if (request.getToken().equalsIgnoreCase("secettoken123")) {
@@ -53,6 +61,8 @@ public class DiplomaEndpoint {
         return null;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "setCompetitorToDiploma")
+    @ResponsePayload
     public Optional<Diploma> setCompetitorToDiploma(SetCompetitorToDiplomaRequest request, Long diplomaId, Long competitorId) {
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
             return diplomaService.setCompetitorToDiploma(diplomaId, competitorId);
@@ -61,6 +71,8 @@ public class DiplomaEndpoint {
         }
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllDiplomasWithCompetitors")
+    @ResponsePayload
     public List<FindAllCompetitorsWithDiplomasResponse> findAllCompetitorsWithDiplomas(FindAllCompetitorsWithDiplomasRequest request) {
         List<FindAllCompetitorsWithDiplomasResponse> response = new ArrayList<>();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {

@@ -35,7 +35,7 @@
                         <xs:element name="timeOfEvent" type="xs:dateTime"/>
                         <xs:element name="time" type="xs:time"/>
                         <xs:element name="placement" type="xs:long"/>
-                        <xs:element name="ageGroup" type="xs:string"/>
+                        <xs:element name="ageGroup" minOccurs="0" type="xs:string"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

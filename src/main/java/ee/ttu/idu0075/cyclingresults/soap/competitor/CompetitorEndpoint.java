@@ -1,4 +1,4 @@
-package ee.ttu.idu0075.cyclingresults.soap;
+package ee.ttu.idu0075.cyclingresults.soap.competitor;
 
 import ee.ttu.idu0075._2018.ws.cyclingresults.wsdl.*;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -31,6 +31,8 @@ public class CompetitorEndpoint {
         return null;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllCompetitors")
+    @ResponsePayload
     public List<FindAllCompetitorsResponse> findAll(FindAllCompetitorsRequest request) {
         List<FindAllCompetitorsResponse> response = new ArrayList<>();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
@@ -45,6 +47,8 @@ public class CompetitorEndpoint {
         return null;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findCompetitorById")
+    @ResponsePayload
     public Optional<FindCompetitorByIdResponse> findById(FindCompetitorByIdRequest request) {
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
             Optional<Competitor> competitor = competitorService.findById(request.getId());

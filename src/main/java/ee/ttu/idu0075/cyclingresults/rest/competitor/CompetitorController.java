@@ -19,23 +19,32 @@ public class CompetitorController {
 
     @PostMapping
     @ApiOperation(value = "Add new competitor")
-    public ResponseEntity<Competitor> save(@RequestBody Competitor competitor) {
-        competitor.setId(Math.abs(new Random().nextLong()));
-        return new ResponseEntity<>(competitorService.save(competitor), HttpStatus.OK);
+    public ResponseEntity<Competitor> save(@RequestBody Competitor competitor, @RequestParam("token") String token) {
+        if (token.equalsIgnoreCase("secrettoken123")) {
+            competitor.setId(Math.abs(new Random().nextLong()));
+            return new ResponseEntity<>(competitorService.save(competitor), HttpStatus.OK);
+        }
+        return null;
     }
 
     @GetMapping
     @ApiOperation(value = "Find all competitors")
-    public ResponseEntity<List<Competitor>> findAll() {
-        return new ResponseEntity<>(competitorService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Competitor>> findAll(@RequestParam("token") String token) {
+        if (token.equalsIgnoreCase("secrettoken123")) {
+            return new ResponseEntity<>(competitorService.findAll(), HttpStatus.OK);
+        }
+        return null;
     }
 
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Find competitor by id")
-    public ResponseEntity<Competitor> findById(@PathVariable("id") Long id) {
-        return competitorService.findById(id)
-                .map(competitor -> new ResponseEntity<>(competitor, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<Competitor> findById(@PathVariable("id") Long id, @RequestParam("token") String token) {
+        if (token.equalsIgnoreCase("secrettoken123")) {
+            return competitorService.findById(id)
+                    .map(competitor -> new ResponseEntity<>(competitor, HttpStatus.OK))
+                    .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
+        }
+        return null;
     }
 }

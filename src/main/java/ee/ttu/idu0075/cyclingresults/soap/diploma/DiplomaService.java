@@ -1,7 +1,8 @@
-package ee.ttu.idu0075.cyclingresults.soap;
+package ee.ttu.idu0075.cyclingresults.soap.diploma;
 
 import ee.ttu.idu0075._2018.ws.cyclingresults.wsdl.Diploma;
 import ee.ttu.idu0075.cyclingresults.dao.DiplomaRepository;
+import ee.ttu.idu0075.cyclingresults.soap.competitor.CompetitorService;
 
 import java.util.List;
 import java.util.Optional;
