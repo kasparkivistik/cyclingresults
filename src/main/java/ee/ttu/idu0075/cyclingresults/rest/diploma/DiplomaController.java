@@ -1,5 +1,6 @@
 package ee.ttu.idu0075.cyclingresults.rest.diploma;
 
+import ee.ttu.idu0075._2018.ws.cyclingresults.wsdl.Diploma;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping(value = "api/diploma")
@@ -16,8 +18,9 @@ public class DiplomaController {
     private DiplomaService diplomaService;
 
     @PostMapping
-    @ApiOperation(value = "Add new diploma to the competitor")
+    @ApiOperation(value = "Add new diploma")
     public ResponseEntity<Diploma> save(@RequestBody Diploma diploma) {
+        diploma.setId(Math.abs(new Random().nextLong()));
         return new ResponseEntity<>(diplomaService.save(diploma), HttpStatus.OK);
     }
 

@@ -1,12 +1,18 @@
 package ee.ttu.idu0075.cyclingresults.rest.diploma;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import ee.ttu.idu0075._2018.ws.cyclingresults.wsdl.Diploma;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface DiplomaRepository extends CrudRepository<Diploma, Long> {
+public interface DiplomaRepository {
 
-    @Query("FROM Diploma d WHERE d.competitor IS NOT NULL")
+    Diploma save(Diploma diploma);
+
+    List<Diploma> findAll();
+
+    Optional<Diploma> findById(Long id);
+
+    Optional<Diploma> setCompetitorToDiploma(Long diplomaId, Long competitorId);
     List<Diploma> findAllCompetitorsWithDiplomas();
 }

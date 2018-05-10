@@ -8,7 +8,7 @@
     <wsdl:types>
         <xs:schema targetNamespace="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl"
                    elementFormDefault="qualified">
-            <xs:complexType name="diplomaType">
+            <xs:complexType name="diploma">
                 <xs:sequence>
                     <xs:element name="id" type="xs:long"/>
                     <xs:element name="event" type="xs:string"/>
@@ -16,10 +16,10 @@
                     <xs:element name="time" type="xs:time"/>
                     <xs:element name="placement" type="xs:long"/>
                     <xs:element name="ageGroup" type="xs:string"/>
-                    <xs:element name="competitor" type="tns:competitorType"/>
+                    <xs:element name="competitor" type="tns:competitor"/>
                 </xs:sequence>
             </xs:complexType>
-            <xs:complexType name="competitorType">
+            <xs:complexType name="competitor">
                 <xs:sequence>
                     <xs:element name="id" type="xs:long"/>
                     <xs:element name="name" type="xs:string"/>
@@ -40,7 +40,7 @@
                 </xs:complexType>
             </xs:element>
 
-            <xs:element name="addDiplomaResponse" type="tns:diplomaType"/>
+            <xs:element name="addDiplomaResponse" type="tns:diploma"/>
 
             <xs:element name="findAllDiplomasRequest">
                 <xs:complexType>
@@ -53,7 +53,7 @@
             <xs:element name="findAllDiplomasResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" maxOccurs="unbounded" name="diploma" type="tns:diplomaType"/>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="diploma" type="tns:diploma"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -69,7 +69,7 @@
             <xs:element name="findDiplomaByIdResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="diploma" type="tns:diplomaType"/>
+                        <xs:element minOccurs="0" name="diploma" type="tns:diploma"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -83,7 +83,7 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="setCompetitorToDiplomaResponse" type="tns:diplomaType"/>
+            <xs:element name="setCompetitorToDiplomaResponse" type="tns:diploma"/>
 
             <xs:element name="findAllCompetitorsWithDiplomasRequest">
                 <xs:complexType>
@@ -97,7 +97,7 @@
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element minOccurs="0" maxOccurs="unbounded" name="diplomaCompetitor"
-                                    type="tns:diplomaType"/>
+                                    type="tns:diploma"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -112,7 +112,7 @@
                 </xs:complexType>
             </xs:element>
 
-            <xs:element name="addCompetitorResponse" type="tns:competitorType"/>
+            <xs:element name="addCompetitorResponse" type="tns:competitor"/>
 
             <xs:element name="findAllCompetitorsRequest">
                 <xs:complexType>
@@ -125,7 +125,7 @@
             <xs:element name="findAllCompetitorsResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" maxOccurs="unbounded" name="competitor" type="tns:competitorType"/>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="competitor" type="tns:competitor"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -142,7 +142,7 @@
             <xs:element name="findCompetitorByIdResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="competitor" minOccurs="0" type="tns:competitorType"/>
+                        <xs:element name="competitor" minOccurs="0" type="tns:competitor"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
