@@ -1,18 +1,24 @@
 package ee.ttu.idu0075.cyclingresults.dao;
 
 import ee.ttu.idu0075._2018.ws.cyclingresults.wsdl.Diploma;
-import lombok.Data;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Data
-@Component
+@Repository
 public class DiplomaRepository {
 
-    private List<Diploma> diplomas;
+    private static List<Diploma> diplomas;
+
+    public static void setDiplomas(List<Diploma> diplomas) {
+        DiplomaRepository.diplomas = diplomas;
+    }
 
     public void add(Diploma diploma) {
         diplomas.add(diploma);
+    }
+
+    public List<Diploma> getDiplomas() {
+        return diplomas;
     }
 }

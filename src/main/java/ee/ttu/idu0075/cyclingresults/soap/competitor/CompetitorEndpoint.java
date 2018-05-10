@@ -1,6 +1,7 @@
 package ee.ttu.idu0075.cyclingresults.soap.competitor;
 
 import ee.ttu.idu0075._2018.ws.cyclingresults.wsdl.*;
+import ee.ttu.idu0075.cyclingresults.dto.CompetitorService;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;

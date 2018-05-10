@@ -1,6 +1,7 @@
 package ee.ttu.idu0075.cyclingresults.rest.diploma;
 
 import ee.ttu.idu0075._2018.ws.cyclingresults.wsdl.Diploma;
+import ee.ttu.idu0075.cyclingresults.dto.DiplomaService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping(value = "api/diploma")
@@ -21,10 +21,10 @@ public class DiplomaController {
     @ApiOperation(value = "Add new diploma")
     public ResponseEntity<Diploma> save(@RequestBody Diploma diploma, @RequestParam("token") String token) {
         if (token.equalsIgnoreCase("secrettoken123")) {
-            diploma.setId(Math.abs(new Random().nextLong()));
+            //diploma.setId(Math.abs(new Random().nextLong()));
             return new ResponseEntity<>(diplomaService.save(diploma), HttpStatus.OK);
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @GetMapping
@@ -33,7 +33,7 @@ public class DiplomaController {
         if (token.equalsIgnoreCase("secredtoken123")) {
             return new ResponseEntity<>(diplomaService.findAll(), HttpStatus.OK);
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @GetMapping(value = "{id}")
@@ -44,7 +44,7 @@ public class DiplomaController {
                     .map(diploma -> new ResponseEntity<>(diploma, HttpStatus.OK))
                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @PutMapping(value = "/{diplomaId}/competitor/{competitorId}")
@@ -57,7 +57,7 @@ public class DiplomaController {
                     .map(diploma -> new ResponseEntity<>(diploma, HttpStatus.OK))
                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @GetMapping(value = "/competitorDiploma")
@@ -66,6 +66,6 @@ public class DiplomaController {
         if (token.equalsIgnoreCase("secrettoken123")) {
             return new ResponseEntity<>(diplomaService.findAllCompetitorsWithDiplomas(), HttpStatus.OK);
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 }
