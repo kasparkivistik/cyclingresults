@@ -147,3 +147,8 @@ Teenus tagastab kõik diplomid, kuhu on määratud võistleja. Seega tagastataks
 REST API on dokumenteeritud kasutades Swagger UId.
 Swagger on kättesaadav [SIIN](http://localhost:8080/swagger-ui.html) pärast Spring Booti rakenduse käivitamist.\
 Samuti on võimalik Swagger UIst näha teenuses kasutatud mudelite disaini (_Competitor_ ja _Diploma_ objekte).
+
+
+## Lisamärkmed
+
+11.05: projekt on veel pooleli. Miskipärast REST service POST meetodid tagastavad null-objekti. Parandan selle esimesel võimalusel ära. Vabandan. 
