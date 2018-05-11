@@ -50,7 +50,6 @@ public class CompetitorController {
             return competitorService.findById(id)
                     .map(competitor -> new ResponseEntity<>(competitor, HttpStatus.OK))
                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }

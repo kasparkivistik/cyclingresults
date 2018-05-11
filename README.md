@@ -1,4 +1,4 @@
-#Cyclingresults
+# Cyclingresults
 
 Eesolev rakendus on valminud õppeaine "Veebiteenused" raames. Teenus koosneb SOAP ja REST API-st,
 mis on loodud Java Spring Boot raamistikus. Dokumentatsioonis käsitletakse SOAP ja REST API-sid eraldi moodulitena.
@@ -21,11 +21,11 @@ $ gradle bootRun
 
 ## Sisukord
 
-1. [Teenuse struktuur](#Teenuse struktuur)
+1. [Teenuse struktuur](#Teenus)
 2. [SOAP API dokumentatsioon](#SOAP)
 3. [REST API dokumentatsioon](#REST)
 
-## Teenuse struktuur
+## Teenus
 
 Teenus koosneb kahest API-st. SOAP ja REST.
 Teenusel on kaks põhiobjekti: _diploma_ (diplom) ja _competitor_ (võistleja).  
@@ -37,6 +37,24 @@ Objekt **Diplom** koosneb järgnevatest elementidest:
 - koht (_placement_),
 - vanuseklass (_ageGroup_),
 - võistleja (_competitor_)\
+
+
+Sealhulgas tuleb mainida, et vanuseklass on enumeratsioon, mis koosneb järgnevatest võimalikest valikutest:
+- M10
+- M12
+- M14
+- M16
+- M18
+- U23
+- N10
+- N12
+- N16
+- N18
+- SEN
+- M
+- N
+
+
 Objekt **Võistleja** koosneb järgnevatest elementidest:  
 - id,
 - nimi (_name_),
@@ -48,6 +66,80 @@ Kui üldiselt API token antaks kaasa näiteks autoriseerimisel, on käesolevas p
 Kuna mõlemad APId kasutavad sama "andmebaasi", siis on nad seotud ühise _repositoryga_, mistõttu SOAP _service_ meetodid võtavad sisse sama objekti, mis REST API, aga väljastavad WSDLis määratud _Response_ objekti.
 ## SOAP
 
+API koosneb kaheksast operatsioonist:
+- addCompetitor
+- addDiploma
+- findAllCompetitors
+- findAllDiplomas
+- findCompetitorById
+- findDiplomaById
+- setCompetitorToDiploma
+- findAllDiplomasWithCompetitors
+
+
+1. addCompetitor
+
+Teenus lisab võistleja andmebaasi. Teenuse käigus genereeritakse võistlejale automaatselt ID, nime ja isikukoodi peab klient ise määrama.
+ID on long andmetüüpi, nimi ja isikukood on string andmetüüpi. Muidugi ei saa ära unustada tokenit, mis käib kaasas iga teenusega. Edaspidi ma seda esile tooma ei hakka.
+
+
+Teenuse väljund tagastab süsteemile uue võistleja ID, nime ja isikukoodi. Täpselt samad andmed, mis süsteemile ka esitati.
+
+![addProduct](src/main/resources/assets/addCompetitor.png)
+
+
+2. addDiploma
+
+Teenus lisab diplomi andmebaasi. Teenuse käigus genereeritakse diplomile automaatselt ID, võistluse nime, võistleja aja, võistluse toimumise aja, vanuseklassi ja koha peab klient ise seadistama.
+Võistluse nimi on string andmetüüpi, võistleja aeg ja võistluse toimumise hetk on vastavalt time ja dateTime, vanusegrupp on stringidest koosnev enumeratisioon ja koht on long.
+
+Teenus tagastab sama informatsiooni, mis klient süsteemi lisas, lisaks veel automaatne ID ja olenemata olemasolule võistleja, kellega diplom seotud on.
+
+
+![addProduct](src/main/resources/assets/addDiploma.png)
+
+
+3. findAllCompetitors
+
+Teenus tagastab kõik andmebaasi registreeritud võistlejad. Tagastatakse võistleja ID, nimi ja isikukood (_Competitor_ objekt).
+
+![addProduct](src/main/resources/assets/findAllCompetitors.png)
+
+
+4. findAllDiplomas
+
+Teenus tagastab kõik andmebaasi registreeritud diplomid. Tagastatakse _Diploma_ objekt.
+
+![addProduct](src/main/resources/assets/findAllDiplomas.png)
+
+
+5. findCompetitorById
+
+Teenus leiab võistleja ID järgi võistleja objekti. Tagastatakse _Competitor_ objekt.
+
+![addProduct](src/main/resources/assets/findCompetitorById.png)
+
+
+6. findDiplomaById
+
+Teenus leiab diplomi ID järgi diplomi objekti. Tagastatakse _Diploma_ objekt.
+
+
+![addProduct](src/main/resources/assets/findDiplomaById.png)
+
+
+7. setCompetitorToDiploma
+
+Teenus lisab diplomile võistleja. Tagastatakse _Diploma_ objekt, kuhu _Competitor_ objekt juurde lisati.
+
+![addProduct](src/main/resources/assets/setCompetitorToDiploma.png)
+
+
+8. findAllDiplomasWithCompetitors
+
+Teenus tagastab kõik diplomid, kuhu on määratud võistleja. Seega tagastatakse _Diploma_ objekt, kus _Competitor_ pole **null**.
+
+![addProduct](src/main/resources/assets/findAllDiplomasWithCompetitors.png)
 
 
 ## REST

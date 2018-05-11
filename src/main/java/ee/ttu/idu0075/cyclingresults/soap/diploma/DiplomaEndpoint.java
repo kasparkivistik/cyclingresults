@@ -24,7 +24,7 @@ public class DiplomaEndpoint {
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
             diploma.setId(Math.abs(new Random().nextLong()));
             diploma.setEvent(request.getEvent());
-            diploma.setAgeGroup(request.getAgeGroup());
+            diploma.setAgeGroup(request.getAgeGroup().toString());
             diploma.setPlacement(request.getPlacement());
             diploma.setTime(request.getTime());
             diploma.setTimeOfEvent(request.getTime());
@@ -74,12 +74,12 @@ public class DiplomaEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllDiplomasWithCompetitors")
     @ResponsePayload
-    public List<FindAllCompetitorsWithDiplomasResponse> findAllCompetitorsWithDiplomas(FindAllCompetitorsWithDiplomasRequest request) {
-        List<FindAllCompetitorsWithDiplomasResponse> response = new ArrayList<>();
+    public List<FindAllDiplomasWithCompetitorsResponse> findAllCompetitorsWithDiplomas(FindAllDiplomasWithCompetitorsRequest request) {
+        List<FindAllDiplomasWithCompetitorsResponse> response = new ArrayList<>();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
-            List<Diploma> diplomas = diplomaService.findAllCompetitorsWithDiplomas();
+            List<Diploma> diplomas = diplomaService.findAllDiplomasWithCompetitor();
             diplomas.forEach(diploma -> {
-                FindAllCompetitorsWithDiplomasResponse resp = new FindAllCompetitorsWithDiplomasResponse();
+                FindAllDiplomasWithCompetitorsResponse resp = new FindAllDiplomasWithCompetitorsResponse();
                 resp.getDiplomaCompetitor().add(diploma);
                 response.add(resp);
             });

@@ -43,7 +43,7 @@ public class DiplomaService {
 
     }
 
-    public List<Diploma> findAllCompetitorsWithDiplomas() {
+    public List<Diploma> findAllDiplomasWithCompetitor() {
         return diplomaRepository.getDiplomas()
                 .stream()
                 .filter(diploma -> diploma.getCompetitor() != null)

@@ -104,7 +104,7 @@
             </xs:element>
             <xs:element name="setCompetitorToDiplomaResponse" type="tns:diploma"/>
 
-            <xs:element name="findAllCompetitorsWithDiplomasRequest">
+            <xs:element name="findAllDiplomasWithCompetitorsRequest">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="token" type="xs:string"/>
@@ -112,7 +112,7 @@
                 </xs:complexType>
             </xs:element>
 
-            <xs:element name="findAllCompetitorsWithDiplomasResponse">
+            <xs:element name="findAllDiplomasWithCompetitorsResponse">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element minOccurs="0" maxOccurs="unbounded" name="diplomaCompetitor"
@@ -192,11 +192,11 @@
     <wsdl:message name="setCompetitorToDiplomaMessageResponse">
         <wsdl:part name="parameter" element="tns:setCompetitorToDiplomaResponse"/>
     </wsdl:message>
-    <wsdl:message name="findAllCompetitorsWithDiplomasMessageRequest">
-        <wsdl:part name="parameter" element="tns:findAllCompetitorsWithDiplomasRequest"/>
+    <wsdl:message name="findAllDiplomasWithCompetitorsMessageRequest">
+        <wsdl:part name="parameter" element="tns:findAllDiplomasWithCompetitorsRequest"/>
     </wsdl:message>
-    <wsdl:message name="findAllCompetitorsWithDiplomasMessageResponse">
-        <wsdl:part name="parameter" element="tns:findAllCompetitorsWithDiplomasResponse"/>
+    <wsdl:message name="findAllDiplomasWithCompetitorsMessageResponse">
+        <wsdl:part name="parameter" element="tns:findAllDiplomasWithCompetitorsResponse"/>
     </wsdl:message>
     <wsdl:message name="addCompetitorMessageRequest">
         <wsdl:part name="parameter" element="tns:addCompetitorRequest"/>
@@ -233,9 +233,9 @@
             <wsdl:input message="tns:setCompetitorToDiplomaMessageRequest"/>
             <wsdl:output message="tns:setCompetitorToDiplomaMessageResponse"/>
         </wsdl:operation>
-        <wsdl:operation name="findAllCompetitorsWithDiplomas">
-            <wsdl:input message="tns:findAllCompetitorsWithDiplomasMessageRequest"/>
-            <wsdl:output message="tns:findAllCompetitorsWithDiplomasMessageResponse"/>
+        <wsdl:operation name="findAllDiplomasWithCompetitors">
+            <wsdl:input message="tns:findAllDiplomasWithCompetitorsMessageRequest"/>
+            <wsdl:output message="tns:findAllDiplomasWithCompetitorsMessageResponse"/>
         </wsdl:operation>
         <wsdl:operation name="addCompetitor">
             <wsdl:input message="tns:addCompetitorMessageRequest"/>
@@ -284,7 +284,7 @@
                 <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="findAllCompetitorsWithDiplomas">
+        <wsdl:operation name="findAllDiplomasWithCompetitors">
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>

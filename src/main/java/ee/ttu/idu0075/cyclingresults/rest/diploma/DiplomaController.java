@@ -64,7 +64,7 @@ public class DiplomaController {
     @ApiOperation(value = "Get all competitors with diplomas")
     public ResponseEntity<List<Diploma>> findAllCompetitorsWithDiplomas(@RequestParam("token") String token) {
         if (token.equalsIgnoreCase("secrettoken123")) {
-            return new ResponseEntity<>(diplomaService.findAllCompetitorsWithDiplomas(), HttpStatus.OK);
+            return new ResponseEntity<>(diplomaService.findAllDiplomasWithCompetitor(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
