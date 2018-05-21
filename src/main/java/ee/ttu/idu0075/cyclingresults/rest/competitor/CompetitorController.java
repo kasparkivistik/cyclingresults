@@ -22,14 +22,8 @@ public class CompetitorController {
     @ApiOperation(value = "Add new competitor")
     public ResponseEntity<Competitor> save(@RequestBody Competitor competitor, @RequestParam("token") String token) {
         if (token.equalsIgnoreCase("secrettoken123")) {
-            Competitor newCompetitor = new Competitor();
-            newCompetitor.setId(Math.abs((long) new Random().nextInt(100)));
-            newCompetitor.setPersonalCode(competitor.getPersonalCode());
-            newCompetitor.setName(competitor.getName());
-            System.out.println("siin on täisnim " + competitor.getName());
-            System.out.println("siin on isikukood " + competitor.getPersonalCode());
-            System.out.println("siin on id " + competitor.getId());
-            return new ResponseEntity<>(competitorService.save(newCompetitor), HttpStatus.OK);
+            competitor.setId(Math.abs((long) new Random().nextInt(100)));
+            return new ResponseEntity<>(competitorService.save(competitor), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }

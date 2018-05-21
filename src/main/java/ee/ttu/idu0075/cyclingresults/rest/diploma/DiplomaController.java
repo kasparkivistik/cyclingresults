@@ -22,7 +22,7 @@ public class DiplomaController {
     @ApiOperation(value = "Add new diploma")
     public ResponseEntity<Diploma> save(@RequestBody Diploma diploma, @RequestParam("token") String token) {
         if (token.equalsIgnoreCase("secrettoken123")) {
-            diploma.setId(Math.abs(new Random().nextLong()));
+            diploma.setId(Math.abs(((long) new Random().nextInt(100))));
             return new ResponseEntity<>(diplomaService.save(diploma), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);

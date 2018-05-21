@@ -152,3 +152,5 @@ Samuti on võimalik Swagger UIst näha teenuses kasutatud mudelite disaini (_Com
 ## Lisamärkmed
 
 11.05: projekt on veel pooleli. Miskipärast REST service POST meetodid tagastavad null-objekti. Parandan selle esimesel võimalusel ära. Vabandan. 
+
+21.05: REST toimib. Väga loll viga.
