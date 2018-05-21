@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping(value = "api/diploma")
@@ -21,7 +22,7 @@ public class DiplomaController {
     @ApiOperation(value = "Add new diploma")
     public ResponseEntity<Diploma> save(@RequestBody Diploma diploma, @RequestParam("token") String token) {
         if (token.equalsIgnoreCase("secrettoken123")) {
-            //diploma.setId(Math.abs(new Random().nextLong()));
+            diploma.setId(Math.abs(new Random().nextLong()));
             return new ResponseEntity<>(diplomaService.save(diploma), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);

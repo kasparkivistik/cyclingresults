@@ -23,7 +23,7 @@ public class CompetitorController {
     public ResponseEntity<Competitor> save(@RequestBody Competitor competitor, @RequestParam("token") String token) {
         if (token.equalsIgnoreCase("secrettoken123")) {
             Competitor newCompetitor = new Competitor();
-            competitor.setId(Math.abs(new Random().nextLong()));
+            newCompetitor.setId(Math.abs((long) new Random().nextInt(100)));
             newCompetitor.setPersonalCode(competitor.getPersonalCode());
             newCompetitor.setName(competitor.getName());
             System.out.println("siin on täisnim " + competitor.getName());

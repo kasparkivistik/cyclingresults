@@ -17,7 +17,7 @@ public class CompetitorService {
     }
 
     public Competitor save(Competitor competitor) {
-        competitorRepository.add(competitor);
+        CompetitorRepository.add(competitor);
         return competitor;
     }
 
