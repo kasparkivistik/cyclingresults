@@ -125,7 +125,13 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="addCompetitorResponse" type="tns:competitor"/>
+    <xs:element name="addCompetitorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="competitor" type="tns:competitor"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:element name="findAllCompetitorsRequest">
         <xs:complexType>

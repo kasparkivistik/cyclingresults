@@ -2,10 +2,13 @@ package ee.ttu.idu0075.cyclingresults.soap.diploma;
 
 import ee.ttu.idu0075._2018.ws.cyclingresults.wsdl.*;
 import ee.ttu.idu0075.cyclingresults.dto.DiplomaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import javax.xml.bind.JAXBElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,13 +20,14 @@ public class DiplomaEndpoint {
 
     private DiplomaService diplomaService;
 
+    @Autowired
     public DiplomaEndpoint(DiplomaService diplomaService) {
         this.diplomaService = diplomaService;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addDiplomaRequest")
     @ResponsePayload
-    public Diploma save(AddDiplomaRequest request) {
+    public Diploma save(@RequestPayload AddDiplomaRequest request) {
         Diploma diploma = new Diploma();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
             diploma.setId(Math.abs(new Random().nextLong()));
