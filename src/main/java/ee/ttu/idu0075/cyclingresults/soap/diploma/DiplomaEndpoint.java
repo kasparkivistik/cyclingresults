@@ -1,18 +1,18 @@
 package ee.ttu.idu0075.cyclingresults.soap.diploma;
 
 import ee.ttu.idu0075._2018.ws.cyclingresults.wsdl.*;
+import ee.ttu.idu0075.cyclingresults.dao.CompetitorRepository;
+import ee.ttu.idu0075.cyclingresults.dto.CompetitorService;
 import ee.ttu.idu0075.cyclingresults.dto.DiplomaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.xml.bind.JAXBElement;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+ import java.util.Random;
 
 @Endpoint
 public class DiplomaEndpoint {
@@ -20,78 +20,83 @@ public class DiplomaEndpoint {
 
     private DiplomaService diplomaService;
 
+    private CompetitorService competitorService;
+
     @Autowired
-    public DiplomaEndpoint(DiplomaService diplomaService) {
+    public DiplomaEndpoint(DiplomaService diplomaService, CompetitorService competitorService) {
         this.diplomaService = diplomaService;
+        this.competitorService = competitorService;
     }
+
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addDiplomaRequest")
     @ResponsePayload
-    public Diploma save(@RequestPayload AddDiplomaRequest request) {
-        Diploma diploma = new Diploma();
+    public AddDiplomaResponse save(@RequestPayload AddDiplomaRequest request) {
+        AddDiplomaResponse response = new AddDiplomaResponse();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
-            diploma.setId(Math.abs(new Random().nextLong()));
+            Diploma diploma = new Diploma();
+            diploma.setId(Math.abs(new Random().nextInt()));
             diploma.setEvent(request.getEvent());
             diploma.setAgeGroup(request.getAgeGroup().toString());
             diploma.setPlacement(request.getPlacement());
             diploma.setTime(request.getTime());
             diploma.setTimeOfEvent(request.getTime());
+            response.setDiploma(diploma);
             diplomaService.save(diploma);
-            return diploma;
+            return response;
         }
-        return null;
+        throw new RuntimeException("Invalid token!");
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findDiplomaByIdRequest")
     @ResponsePayload
-    public Optional<FindDiplomaByIdResponse> findById(FindDiplomaByIdRequest request) {
+    public FindDiplomaByIdResponse findById(@RequestPayload FindDiplomaByIdRequest request) {
         FindDiplomaByIdResponse response = new FindDiplomaByIdResponse();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
-            Optional<Diploma> diploma = diplomaService.findById(request.getId());
-            response.setDiploma(diploma.get());
-            return Optional.of(response);
+            Diploma diploma = diplomaService.findById(request.getId());
+            response.setDiploma(diploma);
+            return response;
         }
-        return Optional.empty();
+        throw new RuntimeException("Invalid token!");
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllDiplomasRequest")
     @ResponsePayload
-    public List<FindAllDiplomasResponse> findAll(FindAllDiplomasRequest request) {
-        List<FindAllDiplomasResponse> response = new ArrayList<>();
+    public FindAllDiplomasResponse findAll(@RequestPayload FindAllDiplomasRequest request) {
+        FindAllDiplomasResponse response = new FindAllDiplomasResponse();
         if (request.getToken().equalsIgnoreCase("secettoken123")) {
             List<Diploma> diplomas = diplomaService.findAll();
-            diplomas.forEach(diploma -> {
-                FindAllDiplomasResponse resp = new FindAllDiplomasResponse();
-                resp.getDiploma().add(diploma);
-                response.add(resp);
-            });
+            response.getDiploma().addAll(diplomas);
             return response;
         }
-        return null;
+        throw new RuntimeException("Invalid token!");
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "setCompetitorToDiplomaRequest")
     @ResponsePayload
-    public Optional<Diploma> setCompetitorToDiploma(SetCompetitorToDiplomaRequest request, Long diplomaId, Long competitorId) {
+    public SetCompetitorToDiplomaResponse setCompetitorToDiploma(@RequestPayload SetCompetitorToDiplomaRequest request, Long diplomaId, Long competitorId) {
+        SetCompetitorToDiplomaResponse response = new SetCompetitorToDiplomaResponse();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
-            return diplomaService.setCompetitorToDiploma(diplomaId, competitorId);
+            Diploma diploma = diplomaService.findById(diplomaId);
+            Competitor competitor = competitorService.findById(competitorId);
+            diploma.setCompetitor(competitor);
+            response.setDiploma(diploma);
+            diplomaService.setCompetitorToDiploma(competitorId, diplomaId);
+            return response;
         } else {
-            return Optional.empty();
+            throw new RuntimeException("Invalid token!");
         }
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllDiplomasWithCompetitorsRequest")
     @ResponsePayload
-    public List<FindAllDiplomasWithCompetitorsResponse> findAllCompetitorsWithDiplomas(FindAllDiplomasWithCompetitorsRequest request) {
-        List<FindAllDiplomasWithCompetitorsResponse> response = new ArrayList<>();
+    public FindAllDiplomasWithCompetitorsResponse findAllCompetitorsWithDiplomas(@RequestPayload FindAllDiplomasWithCompetitorsRequest request) {
+        FindAllDiplomasWithCompetitorsResponse response = new FindAllDiplomasWithCompetitorsResponse();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
             List<Diploma> diplomas = diplomaService.findAllDiplomasWithCompetitor();
-            diplomas.forEach(diploma -> {
-                FindAllDiplomasWithCompetitorsResponse resp = new FindAllDiplomasWithCompetitorsResponse();
-                resp.getDiplomaCompetitor().add(diploma);
-                response.add(resp);
-            });
+            response.getDiplomaCompetitor().addAll(diplomas);
+            return response;
         }
-        return response;
+        throw new RuntimeException("Invalid token!");
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CompetitorService {
@@ -25,10 +26,11 @@ public class CompetitorService {
         return competitorRepository.getCompetitors();
     }
 
-    public Optional<Competitor> findById(Long id) {
-        return competitorRepository.getCompetitors()
+    public Competitor findById(Long id) {
+        Optional<Competitor> comp = competitorRepository.getCompetitors()
                 .stream()
                 .filter(competitor -> competitor.getId() == id)
                 .findFirst();
+        return comp.orElse(null);
     }
 }

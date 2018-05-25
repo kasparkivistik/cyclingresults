@@ -38,34 +38,30 @@ public class CompetitorEndpoint {
             competitorService.save(competitor);
             return response;
         }
-        return null;
+        throw new RuntimeException("Invalid token!");
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllCompetitorsRequest")
     @ResponsePayload
-    public List<FindAllCompetitorsResponse> findAll(@RequestPayload FindAllCompetitorsRequest request) {
-        List<FindAllCompetitorsResponse> response = new ArrayList<>();
+    public FindAllCompetitorsResponse findAll(@RequestPayload FindAllCompetitorsRequest request) {
+        FindAllCompetitorsResponse response = new FindAllCompetitorsResponse();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
             List<Competitor> competitors = competitorService.findAll();
-            competitors.forEach(competitor -> {
-                FindAllCompetitorsResponse resp = new FindAllCompetitorsResponse();
-                resp.getCompetitor().add(competitor);
-                response.add(resp);
-            });
+            response.getCompetitor().addAll(competitors);
             return response;
         }
-        return null;
+        throw new RuntimeException("Invalid token!");
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findCompetitorByIdRequest")
     @ResponsePayload
-    public Optional<FindCompetitorByIdResponse> findById(FindCompetitorByIdRequest request) {
+    public FindCompetitorByIdResponse findById(@RequestPayload FindCompetitorByIdRequest request) {
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
-            Optional<Competitor> competitor = competitorService.findById(request.getId());
+            Competitor competitor = competitorService.findById(request.getId());
             FindCompetitorByIdResponse response = new FindCompetitorByIdResponse();
-            response.setCompetitor(competitor.get());
-            return Optional.of(response);
+            response.setCompetitor(competitor);
+            return response;
         }
-        return Optional.empty();
+        throw new RuntimeException("Invalid token!");
     }
 }

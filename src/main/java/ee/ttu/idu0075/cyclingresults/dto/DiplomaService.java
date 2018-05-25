@@ -29,18 +29,18 @@ public class DiplomaService {
         return diplomaRepository.getDiplomas();
     }
 
-    public Optional<Diploma> findById(Long id) {
-        return diplomaRepository.getDiplomas()
+    public Diploma findById(Long id) {
+        Optional<Diploma> dip = diplomaRepository.getDiplomas()
                 .stream()
                 .filter(diploma -> diploma.getId() == id)
                 .findFirst();
+        return dip.orElse(null);
     }
 
-    public Optional<Diploma> setCompetitorToDiploma(Long diplomaId, Long competitorId) {
-        Optional<Diploma> diploma = findById(diplomaId);
-        diploma.ifPresent(diploma1 -> diploma1.setCompetitor(competitorService.findById(competitorId).get()));
+    public Diploma setCompetitorToDiploma(Long diplomaId, Long competitorId) {
+        Diploma diploma = findById(diplomaId);
+        diploma.setCompetitor(competitorService.findById(competitorId));
         return diploma;
-
     }
 
     public List<Diploma> findAllDiplomasWithCompetitor() {

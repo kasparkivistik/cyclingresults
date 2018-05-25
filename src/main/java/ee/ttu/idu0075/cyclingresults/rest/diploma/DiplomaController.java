@@ -41,9 +41,7 @@ public class DiplomaController {
     @ApiOperation(value = "Find a diploma by it's id")
     public ResponseEntity<Diploma> findById(@PathVariable("id") Long id, @RequestParam String token) {
         if (token.equalsIgnoreCase("secrettoken123")) {
-            return diplomaService.findById(id)
-                    .map(diploma -> new ResponseEntity<>(diploma, HttpStatus.OK))
-                    .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+            return new ResponseEntity<>(diplomaService.findById(id), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
@@ -54,9 +52,7 @@ public class DiplomaController {
                                                           @PathVariable("competitorId") Long competitorId,
                                                           @RequestParam("token") String token) {
         if (token.equalsIgnoreCase("secrettoken123")) {
-            return diplomaService.setCompetitorToDiploma(diplomaId, competitorId)
-                    .map(diploma -> new ResponseEntity<>(diploma, HttpStatus.OK))
-                    .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+            return new ResponseEntity<>(diplomaService.setCompetitorToDiploma(diplomaId, competitorId), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }

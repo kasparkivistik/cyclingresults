@@ -41,9 +41,7 @@ public class CompetitorController {
     @ApiOperation(value = "Find competitor by id")
     public ResponseEntity<Competitor> findById(@PathVariable("id") Long id, @RequestParam("token") String token) {
         if (token.equalsIgnoreCase("secrettoken123")) {
-            return competitorService.findById(id)
-                    .map(competitor -> new ResponseEntity<>(competitor, HttpStatus.OK))
-                    .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+            return new ResponseEntity<>(competitorService.findById(id), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
