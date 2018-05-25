@@ -15,9 +15,13 @@ import java.util.Random;
 public class DiplomaEndpoint {
     private static final String NAMESPACE_URI = "http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl";
 
-    public DiplomaService diplomaService;
+    private DiplomaService diplomaService;
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addDiploma")
+    public DiplomaEndpoint(DiplomaService diplomaService) {
+        this.diplomaService = diplomaService;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addDiplomaRequest")
     @ResponsePayload
     public Diploma save(AddDiplomaRequest request) {
         Diploma diploma = new Diploma();
@@ -34,7 +38,7 @@ public class DiplomaEndpoint {
         return null;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findDiplomaById")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findDiplomaByIdRequest")
     @ResponsePayload
     public Optional<FindDiplomaByIdResponse> findById(FindDiplomaByIdRequest request) {
         FindDiplomaByIdResponse response = new FindDiplomaByIdResponse();
@@ -46,7 +50,7 @@ public class DiplomaEndpoint {
         return Optional.empty();
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllDiplomas")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllDiplomasRequest")
     @ResponsePayload
     public List<FindAllDiplomasResponse> findAll(FindAllDiplomasRequest request) {
         List<FindAllDiplomasResponse> response = new ArrayList<>();
@@ -62,7 +66,7 @@ public class DiplomaEndpoint {
         return null;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "setCompetitorToDiploma")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "setCompetitorToDiplomaRequest")
     @ResponsePayload
     public Optional<Diploma> setCompetitorToDiploma(SetCompetitorToDiplomaRequest request, Long diplomaId, Long competitorId) {
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
@@ -72,7 +76,7 @@ public class DiplomaEndpoint {
         }
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllDiplomasWithCompetitors")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllDiplomasWithCompetitorsRequest")
     @ResponsePayload
     public List<FindAllDiplomasWithCompetitorsResponse> findAllCompetitorsWithDiplomas(FindAllDiplomasWithCompetitorsRequest request) {
         List<FindAllDiplomasWithCompetitorsResponse> response = new ArrayList<>();

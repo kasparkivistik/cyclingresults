@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public class DiplomaRepository {
 
-    private static List<Diploma> diplomas = new ArrayList<>();
+    private List<Diploma> diplomas = new ArrayList<>();
 
 
     public void add(Diploma diploma) {

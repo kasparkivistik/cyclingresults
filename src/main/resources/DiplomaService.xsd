@@ -1,0 +1,163 @@
+<xs:schema targetNamespace="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl"
+           xmlns:tns="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <xs:complexType name="diploma">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="event" type="xs:string"/>
+            <xs:element name="timeOfEvent" type="xs:dateTime"/>
+            <xs:element name="time" type="xs:time"/>
+            <xs:element name="placement" type="xs:long"/>
+            <xs:element name="ageGroup" type="xs:string"/>
+            <xs:element name="competitor" type="tns:competitor"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="competitor">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="personalCode" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="addDiplomaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="token" type="xs:string"/>
+                <xs:element name="event" type="xs:string"/>
+                <xs:element name="timeOfEvent" type="xs:dateTime"/>
+                <xs:element name="time" type="xs:time"/>
+                <xs:element name="placement" type="xs:long"/>
+                <xs:element name="ageGroup" minOccurs="0" type="tns:agegroups"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="agegroups">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="M10"/>
+            <xs:enumeration value="M12"/>
+            <xs:enumeration value="M14"/>
+            <xs:enumeration value="M16"/>
+            <xs:enumeration value="M18"/>
+            <xs:enumeration value="N10"/>
+            <xs:enumeration value="N12"/>
+            <xs:enumeration value="N14"/>
+            <xs:enumeration value="N16"/>
+            <xs:enumeration value="N18"/>
+            <xs:enumeration value="U23"/>
+            <xs:enumeration value="SEN"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="N"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="addDiplomaResponse" type="tns:diploma"/>
+
+    <xs:element name="findAllDiplomasRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="token" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="findAllDiplomasResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="diploma" type="tns:diploma"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="findDiplomaByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="token" type="xs:string"/>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="findDiplomaByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="diploma" type="tns:diploma"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="setCompetitorToDiplomaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="token" type="xs:string"/>
+                <xs:element name="diplomaId" type="xs:long"/>
+                <xs:element name="competitorId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="setCompetitorToDiplomaResponse" type="tns:diploma"/>
+
+    <xs:element name="findAllDiplomasWithCompetitorsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="token" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="findAllDiplomasWithCompetitorsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="diplomaCompetitor"
+                            type="tns:diploma"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addCompetitorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="token" type="xs:string"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="personalCode" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addCompetitorResponse" type="tns:competitor"/>
+
+    <xs:element name="findAllCompetitorsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="token" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="findAllCompetitorsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="competitor" type="tns:competitor"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="findCompetitorByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="token" type="xs:string"/>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="findCompetitorByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="competitor" minOccurs="0" type="tns:competitor"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

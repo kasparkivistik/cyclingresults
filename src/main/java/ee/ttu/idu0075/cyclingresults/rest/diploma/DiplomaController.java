@@ -31,7 +31,7 @@ public class DiplomaController {
     @GetMapping
     @ApiOperation(value = "Find all diplomas released")
     public ResponseEntity<List<Diploma>> findAll(@RequestParam("token") String token) {
-        if (token.equalsIgnoreCase("secredtoken123")) {
+        if (token.equalsIgnoreCase("secrettoken123")) {
             return new ResponseEntity<>(diplomaService.findAll(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);

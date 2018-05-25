@@ -14,11 +14,15 @@ import java.util.Random;
 
 @Endpoint
 public class CompetitorEndpoint {
+    public CompetitorEndpoint(CompetitorService competitorService) {
+        this.competitorService = competitorService;
+    }
+
     private static final String NAMESPACE_URI = "http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl";
 
     private CompetitorService competitorService;
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addCompetitor")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addCompetitorRequest")
     @ResponsePayload
     public Competitor save(@RequestPayload AddCompetitorRequest request) {
         Competitor competitor = new Competitor();
@@ -32,7 +36,7 @@ public class CompetitorEndpoint {
         return null;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllCompetitors")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllCompetitorsRequest")
     @ResponsePayload
     public List<FindAllCompetitorsResponse> findAll(FindAllCompetitorsRequest request) {
         List<FindAllCompetitorsResponse> response = new ArrayList<>();
@@ -48,7 +52,7 @@ public class CompetitorEndpoint {
         return null;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findCompetitorById")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findCompetitorByIdRequest")
     @ResponsePayload
     public Optional<FindCompetitorByIdResponse> findById(FindCompetitorByIdRequest request) {
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {

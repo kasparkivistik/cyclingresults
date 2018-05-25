@@ -30,7 +30,7 @@ configurations {
 task genJaxb {
     ext.sourcesDir = "${buildDir}/generated-sources/jaxb"
     ext.classesDir = "${buildDir}/classes/jaxb"
-    ext.schema = "src/main/resources/DiplomaService.wsdl"
+    ext.schema = "src/main/resources/DiplomaService.xsd"
 
     outputs.dir classesDir
 

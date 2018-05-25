@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public class CompetitorRepository {
 
-    private static List<Competitor> competitors = new ArrayList<>();
+    private List<Competitor> competitors = new ArrayList<>();
 
-    public static void add(Competitor competitor) {
+    public void add(Competitor competitor) {
         competitors.add(competitor);
     }
 
