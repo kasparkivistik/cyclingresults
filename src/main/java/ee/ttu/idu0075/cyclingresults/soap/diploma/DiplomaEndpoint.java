@@ -74,14 +74,14 @@ public class DiplomaEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "setCompetitorToDiplomaRequest")
     @ResponsePayload
-    public SetCompetitorToDiplomaResponse setCompetitorToDiploma(@RequestPayload SetCompetitorToDiplomaRequest request, Long diplomaId, Long competitorId) {
+    public SetCompetitorToDiplomaResponse setCompetitorToDiploma(@RequestPayload SetCompetitorToDiplomaRequest request) {
         SetCompetitorToDiplomaResponse response = new SetCompetitorToDiplomaResponse();
         if (request.getToken().equalsIgnoreCase("secrettoken123")) {
-            Diploma diploma = diplomaService.findById(diplomaId);
-            Competitor competitor = competitorService.findById(competitorId);
+            Diploma diploma = diplomaService.findById(request.getDiplomaId());
+            Competitor competitor = competitorService.findById(request.getCompetitorId());
             diploma.setCompetitor(competitor);
             response.setDiploma(diploma);
-            diplomaService.setCompetitorToDiploma(competitorId, diplomaId);
+            diplomaService.setCompetitorToDiploma(request.getDiplomaId(), request.getCompetitorId());
             return response;
         } else {
             throw new RuntimeException("Invalid token!");

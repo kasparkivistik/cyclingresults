@@ -17,13 +17,23 @@ $ git clone https://github.com/kasparkivistik/cyclingresults.git
 $ cd cyclingresults
 $ gradle genJaxb --genereerib WSDL järgi klassid
 $ gradle bootRun
+
+SoapUI-s käivitamiseks
+
+$ localhost:8080/ws/diploma.wsdl
+$ kopeerida see SoapUI WSDL aknasse
 ```
 
 ## Sisukord
 
-1. [Teenuse struktuur](#Teenus)
-2. [SOAP API dokumentatsioon](#SOAP)
-3. [REST API dokumentatsioon](#REST)
+1. [Sissejuhatus](#Sissejuhatus)
+2. [Teenuse struktuur](#Teenus)
+3. [SOAP API dokumentatsioon](#SOAP)
+4. [REST API dokumentatsioon](#REST)
+
+## Sissejuhatus
+
+Projekt on koostatud kasutades Spring Boot raamistikku. WSDL ja POJO on genereeritud XSD dokumendist, kasutades JAXB libraryt ja Gradle'it.
 
 ## Teenus
 
@@ -149,8 +159,14 @@ Swagger on kättesaadav [SIIN](http://localhost:8080/swagger-ui.html) pärast Sp
 Samuti on võimalik Swagger UIst näha teenuses kasutatud mudelite disaini (_Competitor_ ja _Diploma_ objekte).
 
 
+
+
 ## Lisamärkmed
 
 11.05: projekt on veel pooleli. Miskipärast REST service POST meetodid tagastavad null-objekti. Parandan selle esimesel võimalusel ära. Vabandan. 
 
 21.05: REST toimib. Väga loll viga.
+
+25.05: Kõik peale setCompetitorToDiploma toimib SOAP poole pealt. 
+
+26.05: Meetodit väljakutsudes, palun kontrollige üle, kas järjekord on õige... setCompetitorToDiploma töötab!
