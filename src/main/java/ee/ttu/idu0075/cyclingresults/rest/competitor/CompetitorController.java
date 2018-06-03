@@ -22,7 +22,6 @@ public class CompetitorController {
     @ApiOperation(value = "Add new competitor")
     public ResponseEntity<Competitor> save(@RequestBody Competitor competitor, @RequestParam("token") String token) {
         if (token.equalsIgnoreCase("secrettoken123")) {
-            competitor.setId(Math.abs((long) new Random().nextInt(100)));
             return new ResponseEntity<>(competitorService.save(competitor), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);

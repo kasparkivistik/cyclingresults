@@ -10,8 +10,24 @@ import java.util.List;
 public class CompetitorRepository {
 
     private List<Competitor> competitors = new ArrayList<>();
+    public static long ID = 0;
+
+    public CompetitorRepository() {
+        Competitor competitor = new Competitor();
+        competitor.setName("Toomas Uba");
+        competitor.setId(ID++);
+        competitor.setPersonalCode("38120402813");
+        competitors.add(competitor);
+
+        Competitor competitor2 = new Competitor();
+        competitor2.setId(ID++);
+        competitor2.setName("Peeter Peet");
+        competitor2.setPersonalCode("31934125521");
+        competitors.add(competitor2);
+    }
 
     public void add(Competitor competitor) {
+        competitor.setId(ID++);
         competitors.add(competitor);
     }
 
