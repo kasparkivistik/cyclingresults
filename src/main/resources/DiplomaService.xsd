@@ -10,7 +10,7 @@
             <xs:element name="time" type="xs:time"/>
             <xs:element name="placement" type="xs:long"/>
             <xs:element name="ageGroup" type="xs:string"/>
-            <xs:element name="competitor" type="tns:competitor"/>
+            <xs:element name="competitor" minOccurs="0" type="tns:competitor"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="competitor">

@@ -10,7 +10,7 @@ import java.util.List;
 public class CompetitorRepository {
 
     private List<Competitor> competitors = new ArrayList<>();
-    public static long ID = 0;
+    private static long ID = 0;
 
     public CompetitorRepository() {
         Competitor competitor = new Competitor();

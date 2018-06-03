@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "1cb2b814-8b98-460c-8c07-f6b8856c37a4",
+		"name": "Cyclingresults API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Competitor",
+			"description": "",
+			"item": [
+				{
+					"name": "Add competitor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"kaspar kivistik\",\n\t\"personalCode\": 39705066047\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/competitor?token=secrettoken123",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"competitor"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "secrettoken123",
+									"description": "API token"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all competitors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/api/competitor?token=secrettoken123",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"competitor"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "secrettoken123",
+									"description": "API token"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get competitor by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/api/competitor/0?token=secrettoken123",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"competitor",
+								"0"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "secrettoken123",
+									"description": "API token"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Diploma",
+			"description": "",
+			"item": [
+				{
+					"name": "Add diploma",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ageGroup\": \"M18\",\n\t\"event\": \"Tartu Rattaralli\",\n\t\"placement\": 1234\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/diploma?token=secrettoken123",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"diploma"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "secrettoken123",
+									"description": "API token"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all diplomas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/api/diploma?token=secrettoken123",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"diploma"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "secrettoken123",
+									"description": "API token"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set competitor to a diploma",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/api/diploma/1/competitor/1?token=secrettoken123",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"diploma",
+								"1",
+								"competitor",
+								"1"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "secrettoken123",
+									"description": "API token"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all competitors with diplomas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/api/diploma/competitorDiploma?token=secrettoken123",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"diploma",
+								"competitorDiploma"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "secrettoken123",
+									"description": "API token"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get diploma by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/api/diploma/1?token=secrettoken123",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"diploma",
+								"1"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "secrettoken123",
+									"description": "API token"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
