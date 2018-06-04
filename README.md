@@ -85,6 +85,7 @@ API koosneb kaheksast operatsioonist:
 - findDiplomaById
 - setCompetitorToDiploma
 - findAllDiplomasWithCompetitors
+- searchCompetitors
 
 
 1. addCompetitor
