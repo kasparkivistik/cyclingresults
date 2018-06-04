@@ -6,7 +6,7 @@
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
             <xs:element name="event" type="xs:string"/>
-            <xs:element name="timeOfEvent" type="xs:dateTime"/>
+            <xs:element name="timeOfEvent" type="xs:date"/>
             <xs:element name="time" type="xs:time"/>
             <xs:element name="placement" type="xs:long"/>
             <xs:element name="ageGroup" type="xs:string"/>
@@ -56,7 +56,7 @@
     <xs:element name="addDiplomaResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="diploma" type="tns:diploma" />
+                <xs:element name="diploma" type="tns:diploma"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -174,6 +174,26 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="competitor" minOccurs="0" type="tns:competitor"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="searchCompetitorsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:sequence>
+                    <xs:element name="token" type="xs:string"/>
+                    <xs:element name="name" type="xs:string" minOccurs="0"/>
+                    <xs:element name="personalCode" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="searchCompetitorsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="competitor" type="tns:competitor" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

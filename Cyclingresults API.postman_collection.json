@@ -11,6 +11,21 @@
 			"item": [
 				{
 					"name": "Add competitor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a902ca62-445d-44a4-8451-e406379263fb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"kaspar kivistik\");",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -46,6 +61,23 @@
 				},
 				{
 					"name": "Get all competitors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "719adb54-e3a6-4561-a7d4-81d1d92b012f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].personalCode).to.eql(\"38120402813\");",
+									"    pm.expect(jsonData[1].personalCode).to.eql(\"31934125521\");",
+									"",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -73,6 +105,21 @@
 				},
 				{
 					"name": "Get competitor by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "952f569f-60c6-4d0c-a821-0ca51e2f2c38",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(0);",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -142,6 +189,21 @@
 				},
 				{
 					"name": "Get all diplomas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "44b05ac6-8879-4e4d-9926-f92e8ad3c97f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].id).to.eql(0);",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -169,6 +231,22 @@
 				},
 				{
 					"name": "Set competitor to a diploma",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29fa06de-33d5-4a06-8593-95f571f5fcdf",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(1);",
+									"    pm.expect(jsonData.competitor.id).to.eq(1);",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -199,6 +277,23 @@
 				},
 				{
 					"name": "Get all competitors with diplomas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "68b93d2d-0f27-4f88-a882-464cf086f65a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].id).to.eql(0);",
+									"    pm.expect(jsonData[1].id).to.eql(1);",
+									"",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -227,6 +322,21 @@
 				},
 				{
 					"name": "Get diploma by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cf2cdade-c002-4e87-8778-a4fd67762279",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(0);",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],

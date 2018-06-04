@@ -1,0 +1,1214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="aebe450d-3bf2-4990-8b9a-412cc3cd7634" activeEnvironment="Default" name="diploma" resourceRoot=""
+                    soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL"
+                    xmlns:con="http://eviware.com/soapui/config">
+    <con:settings/>
+    <con:interface xsi:type="con:WsdlInterface" id="b2132742-681a-4c38-b33b-2e311f2b4784" wsaVersion="NONE"
+                   name="DiplomaPortSoap11" type="wsdl"
+                   bindingName="{http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl}DiplomaPortSoap11"
+                   soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/ws/diploma.wsdl"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:settings/>
+        <con:definitionCache type="TEXT" rootPart="http://localhost:8080/ws/diploma.wsdl">
+            <con:part>
+                <con:url>http://localhost:8080/ws/diploma.wsdl</con:url>
+                <con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="diploma">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long"/>
+          <xs:element name="event" type="xs:string"/>
+          <xs:element name="timeOfEvent" type="xs:date"/>
+          <xs:element name="time" type="xs:time"/>
+          <xs:element name="placement" type="xs:long"/>
+          <xs:element name="ageGroup" type="xs:string"/>
+          <xs:element minOccurs="0" name="competitor" type="tns:competitor"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="competitor">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="personalCode" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addDiplomaRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="event" type="xs:string"/>
+            <xs:element name="timeOfEvent" type="xs:dateTime"/>
+            <xs:element name="time" type="xs:time"/>
+            <xs:element name="placement" type="xs:long"/>
+            <xs:element minOccurs="0" name="ageGroup" type="tns:agegroups"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:simpleType name="agegroups">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="M10"/>
+          <xs:enumeration value="M12"/>
+          <xs:enumeration value="M14"/>
+          <xs:enumeration value="M16"/>
+          <xs:enumeration value="M18"/>
+          <xs:enumeration value="N10"/>
+          <xs:enumeration value="N12"/>
+          <xs:enumeration value="N14"/>
+          <xs:enumeration value="N16"/>
+          <xs:enumeration value="N18"/>
+          <xs:enumeration value="U23"/>
+          <xs:enumeration value="SEN"/>
+          <xs:enumeration value="M"/>
+          <xs:enumeration value="N"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="addDiplomaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="diploma" type="tns:diploma"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findAllDiplomasRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findAllDiplomasResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="diploma" type="tns:diploma"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findDiplomaByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="id" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findDiplomaByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="diploma" type="tns:diploma"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setCompetitorToDiplomaRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="diplomaId" type="xs:long"/>
+            <xs:element name="competitorId" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setCompetitorToDiplomaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="diploma" type="tns:diploma"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findAllDiplomasWithCompetitorsRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findAllDiplomasWithCompetitorsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="diplomaCompetitor" type="tns:diploma"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addCompetitorRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="personalCode" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addCompetitorResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="competitor" type="tns:competitor"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findAllCompetitorsRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findAllCompetitorsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="competitor" type="tns:competitor"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findCompetitorByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="id" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findCompetitorByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="competitor" type="tns:competitor"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="searchCompetitorsRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:sequence>
+              <xs:element name="token" type="xs:string"/>
+              <xs:element minOccurs="0" name="name" type="xs:string"/>
+              <xs:element minOccurs="0" name="personalCode" type="xs:string"/>
+            </xs:sequence>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="searchCompetitorsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="competitor" type="tns:competitor"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="findAllDiplomasWithCompetitorsRequest">
+    <wsdl:part element="tns:findAllDiplomasWithCompetitorsRequest" name="findAllDiplomasWithCompetitorsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDiplomaResponse">
+    <wsdl:part element="tns:addDiplomaResponse" name="addDiplomaResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCompetitorByIdRequest">
+    <wsdl:part element="tns:findCompetitorByIdRequest" name="findCompetitorByIdRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllCompetitorsResponse">
+    <wsdl:part element="tns:findAllCompetitorsResponse" name="findAllCompetitorsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findDiplomaByIdRequest">
+    <wsdl:part element="tns:findDiplomaByIdRequest" name="findDiplomaByIdRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllCompetitorsRequest">
+    <wsdl:part element="tns:findAllCompetitorsRequest" name="findAllCompetitorsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllDiplomasResponse">
+    <wsdl:part element="tns:findAllDiplomasResponse" name="findAllDiplomasResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findDiplomaByIdResponse">
+    <wsdl:part element="tns:findDiplomaByIdResponse" name="findDiplomaByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addCompetitorRequest">
+    <wsdl:part element="tns:addCompetitorRequest" name="addCompetitorRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addCompetitorResponse">
+    <wsdl:part element="tns:addCompetitorResponse" name="addCompetitorResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchCompetitorsResponse">
+    <wsdl:part element="tns:searchCompetitorsResponse" name="searchCompetitorsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllDiplomasRequest">
+    <wsdl:part element="tns:findAllDiplomasRequest" name="findAllDiplomasRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCompetitorByIdResponse">
+    <wsdl:part element="tns:findCompetitorByIdResponse" name="findCompetitorByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setCompetitorToDiplomaResponse">
+    <wsdl:part element="tns:setCompetitorToDiplomaResponse" name="setCompetitorToDiplomaResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchCompetitorsRequest">
+    <wsdl:part element="tns:searchCompetitorsRequest" name="searchCompetitorsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setCompetitorToDiplomaRequest">
+    <wsdl:part element="tns:setCompetitorToDiplomaRequest" name="setCompetitorToDiplomaRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDiplomaRequest">
+    <wsdl:part element="tns:addDiplomaRequest" name="addDiplomaRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllDiplomasWithCompetitorsResponse">
+    <wsdl:part element="tns:findAllDiplomasWithCompetitorsResponse" name="findAllDiplomasWithCompetitorsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DiplomaPort">
+    <wsdl:operation name="findAllDiplomasWithCompetitors">
+      <wsdl:input message="tns:findAllDiplomasWithCompetitorsRequest" name="findAllDiplomasWithCompetitorsRequest"></wsdl:input>
+      <wsdl:output message="tns:findAllDiplomasWithCompetitorsResponse" name="findAllDiplomasWithCompetitorsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addDiploma">
+      <wsdl:input message="tns:addDiplomaRequest" name="addDiplomaRequest"></wsdl:input>
+      <wsdl:output message="tns:addDiplomaResponse" name="addDiplomaResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findCompetitorById">
+      <wsdl:input message="tns:findCompetitorByIdRequest" name="findCompetitorByIdRequest"></wsdl:input>
+      <wsdl:output message="tns:findCompetitorByIdResponse" name="findCompetitorByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAllCompetitors">
+      <wsdl:input message="tns:findAllCompetitorsRequest" name="findAllCompetitorsRequest"></wsdl:input>
+      <wsdl:output message="tns:findAllCompetitorsResponse" name="findAllCompetitorsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findDiplomaById">
+      <wsdl:input message="tns:findDiplomaByIdRequest" name="findDiplomaByIdRequest"></wsdl:input>
+      <wsdl:output message="tns:findDiplomaByIdResponse" name="findDiplomaByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAllDiplomas">
+      <wsdl:input message="tns:findAllDiplomasRequest" name="findAllDiplomasRequest"></wsdl:input>
+      <wsdl:output message="tns:findAllDiplomasResponse" name="findAllDiplomasResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCompetitor">
+      <wsdl:input message="tns:addCompetitorRequest" name="addCompetitorRequest"></wsdl:input>
+      <wsdl:output message="tns:addCompetitorResponse" name="addCompetitorResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchCompetitors">
+      <wsdl:input message="tns:searchCompetitorsRequest" name="searchCompetitorsRequest"></wsdl:input>
+      <wsdl:output message="tns:searchCompetitorsResponse" name="searchCompetitorsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setCompetitorToDiploma">
+      <wsdl:input message="tns:setCompetitorToDiplomaRequest" name="setCompetitorToDiplomaRequest"></wsdl:input>
+      <wsdl:output message="tns:setCompetitorToDiplomaResponse" name="setCompetitorToDiplomaResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DiplomaPortSoap11" type="tns:DiplomaPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findAllDiplomasWithCompetitors">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="findAllDiplomasWithCompetitorsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findAllDiplomasWithCompetitorsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addDiploma">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="addDiplomaRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addDiplomaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findCompetitorById">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="findCompetitorByIdRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findCompetitorByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAllCompetitors">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="findAllCompetitorsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findAllCompetitorsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findDiplomaById">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="findDiplomaByIdRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findDiplomaByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAllDiplomas">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="findAllDiplomasRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findAllDiplomasResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCompetitor">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="addCompetitorRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addCompetitorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchCompetitors">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="searchCompetitorsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="searchCompetitorsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setCompetitorToDiploma">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="setCompetitorToDiplomaRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setCompetitorToDiplomaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DiplomaPortService">
+    <wsdl:port binding="tns:DiplomaPortSoap11" name="DiplomaPortSoap11">
+      <soap:address location="http://localhost:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content>
+                <con:type>http://schemas.xmlsoap.org/wsdl/</con:type>
+            </con:part>
+        </con:definitionCache>
+        <con:endpoints>
+            <con:endpoint>http://localhost:8080/ws</con:endpoint>
+        </con:endpoints>
+        <con:operation id="50e56521-c47f-4587-b9c1-1ac54e9a5e84" isOneWay="false" action="" name="addCompetitor"
+                       bindingOperationName="addCompetitor" type="Request-Response" outputName="addCompetitorResponse"
+                       inputName="addCompetitorRequest" receivesAttachments="false" sendsAttachments="false"
+                       anonymous="optional">
+            <con:settings/>
+            <con:call id="a3bd5dcd-edcb-4991-95cd-6f47b191a37d" name="Request 1">
+                <con:settings/>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:addCompetitorRequest>
+         <wsdl:token>?</wsdl:token>
+         <wsdl:name>?</wsdl:name>
+         <wsdl:personalCode>?</wsdl:personalCode>
+      </wsdl:addCompetitorRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508"
+                               action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/addCompetitorRequest"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="cb3560b9-f91b-4bbb-b7f8-1a7aeccfabf8" isOneWay="false" action="" name="addDiploma"
+                       bindingOperationName="addDiploma" type="Request-Response" outputName="addDiplomaResponse"
+                       inputName="addDiplomaRequest" receivesAttachments="false" sendsAttachments="false"
+                       anonymous="optional">
+            <con:settings/>
+            <con:call id="320869da-15f3-408b-8fef-877aedbc1dfd" name="Request 1">
+                <con:settings/>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:addDiplomaRequest>
+         <wsdl:token>?</wsdl:token>
+         <wsdl:event>?</wsdl:event>
+         <wsdl:timeOfEvent>?</wsdl:timeOfEvent>
+         <wsdl:time>?</wsdl:time>
+         <wsdl:placement>?</wsdl:placement>
+         <!--Optional:-->
+         <wsdl:ageGroup>?</wsdl:ageGroup>
+      </wsdl:addDiplomaRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508"
+                               action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/addDiplomaRequest"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="725fe996-2a6b-4813-8d2f-ae2be731b37f" isOneWay="false" action="" name="findAllCompetitors"
+                       bindingOperationName="findAllCompetitors" type="Request-Response"
+                       outputName="findAllCompetitorsResponse" inputName="findAllCompetitorsRequest"
+                       receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="78046f19-afee-4823-9272-98b3170c780b" name="Request 1">
+                <con:settings>
+                    <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/>
+                    </con:setting>
+                </con:settings>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:findAllCompetitorsRequest>
+         <wsdl:token>secrettoken123</wsdl:token>
+      </wsdl:findAllCompetitorsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508"
+                               action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/findAllCompetitorsRequest"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="f413bcd5-fac7-42b4-b4b3-aae6c20c973e" isOneWay="false" action="" name="findAllDiplomas"
+                       bindingOperationName="findAllDiplomas" type="Request-Response"
+                       outputName="findAllDiplomasResponse" inputName="findAllDiplomasRequest"
+                       receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="3d118536-e108-4739-8b06-215663dd658e" name="Request 1">
+                <con:settings>
+                    <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/>
+                    </con:setting>
+                </con:settings>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:findAllDiplomasRequest>
+         <wsdl:token>secettoken123</wsdl:token>
+      </wsdl:findAllDiplomasRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508"
+                               action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/findAllDiplomasRequest"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="35dedea9-9872-4c26-b6e9-8e3baf4b8cc7" isOneWay="false" action=""
+                       name="findAllDiplomasWithCompetitors" bindingOperationName="findAllDiplomasWithCompetitors"
+                       type="Request-Response" outputName="findAllDiplomasWithCompetitorsResponse"
+                       inputName="findAllDiplomasWithCompetitorsRequest" receivesAttachments="false"
+                       sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="ddf5f3fb-0cf4-4c62-a9a2-d05856a0e461" name="Request 1">
+                <con:settings/>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:findAllDiplomasWithCompetitorsRequest>
+         <wsdl:token>?</wsdl:token>
+      </wsdl:findAllDiplomasWithCompetitorsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508"
+                               action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/findAllDiplomasWithCompetitorsRequest"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="442f10b3-a12e-4538-92ec-e39aae0dd947" isOneWay="false" action="" name="findCompetitorById"
+                       bindingOperationName="findCompetitorById" type="Request-Response"
+                       outputName="findCompetitorByIdResponse" inputName="findCompetitorByIdRequest"
+                       receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="b54b389e-88aa-44c0-9488-871a21f8879a" name="Request 1">
+                <con:settings/>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:findCompetitorByIdRequest>
+         <wsdl:token>?</wsdl:token>
+         <wsdl:id>?</wsdl:id>
+      </wsdl:findCompetitorByIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508"
+                               action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/findCompetitorByIdRequest"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="e2555369-68a6-4d71-810e-28826867fe2e" isOneWay="false" action="" name="findDiplomaById"
+                       bindingOperationName="findDiplomaById" type="Request-Response"
+                       outputName="findDiplomaByIdResponse" inputName="findDiplomaByIdRequest"
+                       receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="bb66ec1b-4676-450e-9d8a-80a9d7318334" name="Request 1">
+                <con:settings/>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:findDiplomaByIdRequest>
+         <wsdl:token>?</wsdl:token>
+         <wsdl:id>?</wsdl:id>
+      </wsdl:findDiplomaByIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508"
+                               action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/findDiplomaByIdRequest"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="773e3d99-7a73-4b86-8463-a5ce950cd071" isOneWay="false" action=""
+                       name="setCompetitorToDiploma" bindingOperationName="setCompetitorToDiploma"
+                       type="Request-Response" outputName="setCompetitorToDiplomaResponse"
+                       inputName="setCompetitorToDiplomaRequest" receivesAttachments="false" sendsAttachments="false"
+                       anonymous="optional">
+            <con:settings/>
+            <con:call id="00c53ff7-a04e-436f-95fb-c22276fbacdc" name="Request 1">
+                <con:settings/>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:setCompetitorToDiplomaRequest>
+         <wsdl:token>?</wsdl:token>
+         <wsdl:diplomaId>?</wsdl:diplomaId>
+         <wsdl:competitorId>?</wsdl:competitorId>
+      </wsdl:setCompetitorToDiplomaRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508"
+                               action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/setCompetitorToDiplomaRequest"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="a7e55455-2aaf-4fb9-b512-d110de0c1d6f" isOneWay="false" action="" name="searchCompetitors"
+                       bindingOperationName="searchCompetitors" type="Request-Response"
+                       outputName="searchCompetitorsResponse" inputName="searchCompetitorsRequest"
+                       receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="69f1e3a6-eb98-440e-830b-7d9c76c093e2" name="Request 1">
+                <con:settings>
+                    <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/>
+                    </con:setting>
+                </con:settings>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:searchCompetitorsRequest>
+         <wsdl:token>secrettoken123</wsdl:token>
+         <!--Optional:-->
+         <wsdl:name>Toomas</wsdl:name>
+         <!--Optional:-->
+         <wsdl:personalCode>?</wsdl:personalCode>
+      </wsdl:searchCompetitorsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508"
+                               action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/searchCompetitorsRequest"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+    </con:interface>
+    <con:testSuite id="73e2a001-ecc6-49a9-97d9-7182c3d3386d" name="SOAP tests">
+        <con:settings/>
+        <con:runType>SEQUENTIAL</con:runType>
+        <con:testCase id="2f1b9d7a-7335-40c2-9560-bc13124f0270" failOnError="true" failTestCaseOnErrors="true"
+                      keepSession="false" maxResults="0" name="competitorTests" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="request" id="5c60b286-ea85-4ca4-8709-b2be83515387" name="addCompetitor - Request 1">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>DiplomaPortSoap11</con:interface>
+                    <con:operation>addCompetitor</con:operation>
+                    <con:request name="addCompetitor - Request 1" outgoingWss="" incomingWss="" timeout=""
+                                 sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false"
+                                 wssPasswordType="" id="17c9818f-e7b4-4a16-b32b-f7a424f97f8a">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:addCompetitorRequest>
+         <wsdl:token>secrettoken123</wsdl:token>
+         <wsdl:name>kaspar kivisitk</wsdl:name>
+         <wsdl:personalCode>?</wsdl:personalCode>
+      </wsdl:addCompetitorRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                        <con:assertion type="SOAP Response" id="c6833075-71b3-4055-9b9e-b0b58ba7c1a9"
+                                       name="SOAP Response"/>
+                        <con:assertion type="XPath Match" id="5a32b3b0-7900-46f0-8746-c34ec73a9b17" name="XPath Match">
+                            <con:configuration>
+                                <path>declare namespace sp2='http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl';
+                                    //sp2:name[1]
+                                </path>
+                                <content>kaspar kivisitk</content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="Schema Compliance" id="0a928659-8a9c-4a28-b9c2-9cad53f5a362"
+                                       name="Schema Compliance">
+                            <con:configuration>
+                                <definition/>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig mustUnderstand="NONE" version="200508"
+                                       action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/addCompetitorRequest"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="request" id="45e59794-d0b6-4482-a5c3-b32f83759d96"
+                          name="findAllCompetitors - Request 1">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>DiplomaPortSoap11</con:interface>
+                    <con:operation>findAllCompetitors</con:operation>
+                    <con:request name="findAllCompetitors - Request 1" outgoingWss="" incomingWss="" timeout=""
+                                 sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false"
+                                 wssPasswordType="" id="df833519-4515-4d80-b01b-a5b59fdae2de">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:findAllCompetitorsRequest>
+         <wsdl:token>secrettoken123</wsdl:token>
+      </wsdl:findAllCompetitorsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                        <con:assertion type="SOAP Response" id="f26a2bd7-d3e3-41f6-9841-4d5b9e163f4b"
+                                       name="SOAP Response"/>
+                        <con:assertion type="XPath Match" id="b50ccaef-6794-418f-b64a-05f2726dbb7b" name="XPath Match">
+                            <con:configuration>
+                                <path>declare namespace sp2='http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl';
+                                    //sp2:competitor[1]
+                                </path>
+                                <content><![CDATA[<ns2:competitor xmlns:ns2="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <ns2:id>0</ns2:id>
+  <ns2:name>Toomas Uba</ns2:name>
+  <ns2:personalCode>38120402813</ns2:personalCode>
+</ns2:competitor>]]></content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="Schema Compliance" id="6142212a-c62c-4c7c-b93d-6c656a112e12"
+                                       name="Schema Compliance">
+                            <con:configuration>
+                                <definition/>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig mustUnderstand="NONE" version="200508"
+                                       action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/findAllCompetitorsRequest"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="request" id="49e73d4f-a636-489b-9bda-33b6529f4d75"
+                          name="findCompetitorById - Request 1">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>DiplomaPortSoap11</con:interface>
+                    <con:operation>findCompetitorById</con:operation>
+                    <con:request name="findCompetitorById - Request 1" outgoingWss="" incomingWss="" timeout=""
+                                 sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false"
+                                 wssPasswordType="" id="3fe72ba9-d4fb-4e83-a477-f646b1abedcc">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:findCompetitorByIdRequest>
+         <wsdl:token>secrettoken123</wsdl:token>
+         <wsdl:id>0</wsdl:id>
+      </wsdl:findCompetitorByIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                        <con:assertion type="SOAP Response" id="2ee39c8f-b168-4789-a6af-8be53635476a"
+                                       name="SOAP Response"/>
+                        <con:assertion type="XPath Match" id="a03439ba-2f76-4d52-ac15-98c0733a0b5c" name="XPath Match">
+                            <con:configuration>
+                                <path>declare namespace sp2='http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl';
+                                    //sp2:competitor[1]
+                                </path>
+                                <content><![CDATA[<ns2:competitor xmlns:ns2="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <ns2:id>0</ns2:id>
+  <ns2:name>Toomas Uba</ns2:name>
+  <ns2:personalCode>38120402813</ns2:personalCode>
+</ns2:competitor>]]></content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="Schema Compliance" id="a6005296-285f-4297-9e3c-e62998b78678"
+                                       name="Schema Compliance">
+                            <con:configuration>
+                                <definition/>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig mustUnderstand="NONE" version="200508"
+                                       action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/findCompetitorByIdRequest"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="request" id="cb88b200-db22-4446-949f-08390dd0ee78"
+                          name="setCompetitorToDiploma - Request 1">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>DiplomaPortSoap11</con:interface>
+                    <con:operation>setCompetitorToDiploma</con:operation>
+                    <con:request name="setCompetitorToDiploma - Request 1" outgoingWss="" incomingWss="" timeout=""
+                                 sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false"
+                                 wssPasswordType="" id="9b296a09-47e7-43f1-aa6e-c754b4f4124d">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:setCompetitorToDiplomaRequest>
+         <wsdl:token>secrettoken123</wsdl:token>
+         <wsdl:diplomaId>1</wsdl:diplomaId>
+         <wsdl:competitorId>1</wsdl:competitorId>
+      </wsdl:setCompetitorToDiplomaRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                        <con:assertion type="SOAP Response" id="eecdcaa8-d5b3-4370-a144-9c4f15439e04"
+                                       name="SOAP Response"/>
+                        <con:assertion type="XPath Match" id="e495143a-c697-4a11-8888-c5473662ae28" name="XPath Match">
+                            <con:configuration>
+                                <path>declare namespace sp2='http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl';
+                                    //sp2:diploma[1]
+                                </path>
+                                <content><![CDATA[<ns2:diploma xmlns:ns2="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <ns2:id>1</ns2:id>
+  <ns2:event>Tartu Rattaralli</ns2:event>
+  <ns2:timeOfEvent>2018-05-28</ns2:timeOfEvent>
+  <ns2:time>02:22:32</ns2:time>
+  <ns2:placement>123</ns2:placement>
+  <ns2:ageGroup>M16</ns2:ageGroup>
+  <ns2:competitor>
+    <ns2:id>1</ns2:id>
+    <ns2:name>Peeter Peet</ns2:name>
+    <ns2:personalCode>31934125521</ns2:personalCode>
+  </ns2:competitor>
+</ns2:diploma>]]></content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="Schema Compliance" id="f7c0b736-10e6-4299-92fb-f0f804662b0a"
+                                       name="Schema Compliance">
+                            <con:configuration>
+                                <definition/>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig mustUnderstand="NONE" version="200508"
+                                       action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/setCompetitorToDiplomaRequest"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="request" id="8d7f6d4c-0aa3-4657-b5dd-f1fff386caba" name="searchCompetitors - Request 1">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>DiplomaPortSoap11</con:interface>
+                    <con:operation>searchCompetitors</con:operation>
+                    <con:request name="searchCompetitors - Request 1" outgoingWss="" incomingWss="" timeout=""
+                                 sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false"
+                                 wssPasswordType="" id="797d4dcd-e842-43aa-8053-0d2cfbac93ae">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:searchCompetitorsRequest>
+         <wsdl:token>secrettoken123</wsdl:token>
+         <!--Optional:-->
+         <wsdl:name>Toomas</wsdl:name>
+         
+      </wsdl:searchCompetitorsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                        <con:assertion type="SOAP Response" id="1d41a601-77c3-41f7-a4cd-73c5cdffed30"
+                                       name="SOAP Response"/>
+                        <con:assertion type="Schema Compliance" id="db35f3e3-b3f2-419c-b4e4-8a529031783e"
+                                       name="Schema Compliance">
+                            <con:configuration>
+                                <definition/>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="XPath Match" id="24569556-8c86-4ec4-9b9d-7d2a1b39d130" name="XPath Match">
+                            <con:configuration>
+                                <path>declare namespace sp2='http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl';
+                                    //sp2:competitor[1]
+                                </path>
+                                <content><![CDATA[<ns2:competitor xmlns:ns2="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <ns2:id>0</ns2:id>
+  <ns2:name>Toomas Uba</ns2:name>
+  <ns2:personalCode>38120402813</ns2:personalCode>
+</ns2:competitor>]]></content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig mustUnderstand="NONE" version="200508"
+                                       action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/searchCompetitorsRequest"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:properties/>
+        </con:testCase>
+        <con:testCase id="ff487f0b-bef4-49a9-942a-0c9e8e612b75" failOnError="true" failTestCaseOnErrors="true"
+                      keepSession="false" maxResults="0" name="diplomaTests" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="request" id="adafd801-233c-4019-a988-bf4fcefc07b9" name="addDiploma - Request 1">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>DiplomaPortSoap11</con:interface>
+                    <con:operation>addDiploma</con:operation>
+                    <con:request name="addDiploma - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore=""
+                                 useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""
+                                 id="a4b71683-4d2a-46c3-8d3d-2cfea066a701">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:addDiplomaRequest>
+         <wsdl:token>secrettoken123</wsdl:token>
+         <wsdl:event>Tartu Rattaralli</wsdl:event>
+         <wsdl:timeOfEvent>2018-05-28</wsdl:timeOfEvent>
+         <wsdl:time>02:22:32</wsdl:time>
+         <wsdl:placement>12341</wsdl:placement>
+         <!--Optional:-->
+         <wsdl:ageGroup>M18</wsdl:ageGroup>
+      </wsdl:addDiplomaRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                        <con:assertion type="SOAP Response" id="17ed8033-547d-4bd5-a849-5b78594df8db"
+                                       name="SOAP Response"/>
+                        <con:assertion type="XPath Match" id="a3be49c8-1db5-4bef-ab3c-396242fd5213" name="XPath Match">
+                            <con:configuration>
+                                <path>declare namespace sp2='http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl';
+                                    //sp2:event[1]
+                                </path>
+                                <content>Tartu Rattaralli</content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="Schema Compliance" id="d20d2685-17ef-4180-b6a5-7b4790b8d4dd"
+                                       name="Schema Compliance">
+                            <con:configuration>
+                                <definition/>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig mustUnderstand="NONE" version="200508"
+                                       action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/addDiplomaRequest"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="request" id="f6f2b270-f35f-4976-ae65-5a66d00f42d5" name="findAllDiplomas - Request 1">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>DiplomaPortSoap11</con:interface>
+                    <con:operation>findAllDiplomas</con:operation>
+                    <con:request name="findAllDiplomas - Request 1" outgoingWss="" incomingWss="" timeout=""
+                                 sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false"
+                                 wssPasswordType="" id="428015e8-cea1-4ab6-822a-cfbee0b83e62">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:findAllDiplomasRequest>
+         <wsdl:token>secettoken123</wsdl:token>
+      </wsdl:findAllDiplomasRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                        <con:assertion type="SOAP Response" id="a5a0d629-dd7e-4384-be41-3e755e103642"
+                                       name="SOAP Response"/>
+                        <con:assertion type="XPath Match" id="d908069e-61d7-4474-a114-4ef179dc1cd0" name="XPath Match">
+                            <con:configuration>
+                                <path>declare namespace sp2='http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl';
+                                    //sp2:diploma[1]
+                                </path>
+                                <content><![CDATA[<ns2:diploma xmlns:ns2="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <ns2:id>0</ns2:id>
+  <ns2:event>Tartu Rattaralli</ns2:event>
+  <ns2:timeOfEvent>2018-05-28</ns2:timeOfEvent>
+  <ns2:time>02:22:32</ns2:time>
+  <ns2:placement>234</ns2:placement>
+  <ns2:ageGroup>M18</ns2:ageGroup>
+  <ns2:competitor>
+    <ns2:id>0</ns2:id>
+    <ns2:name>Toomas Uba</ns2:name>
+    <ns2:personalCode>38120402813</ns2:personalCode>
+  </ns2:competitor>
+</ns2:diploma>]]></content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="Schema Compliance" id="5b1246b8-1133-410a-910d-42fcc2d72d55"
+                                       name="Schema Compliance">
+                            <con:configuration>
+                                <definition/>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig mustUnderstand="NONE" version="200508"
+                                       action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/findAllDiplomasRequest"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="request" id="db0d4914-ec62-4910-b884-5cbd5c5cad11"
+                          name="findAllDiplomasWithCompetitors - Request 1">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>DiplomaPortSoap11</con:interface>
+                    <con:operation>findAllDiplomasWithCompetitors</con:operation>
+                    <con:request name="findAllDiplomasWithCompetitors - Request 1" outgoingWss="" incomingWss=""
+                                 timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false"
+                                 wssPasswordType="" id="6def756f-0cee-4d1b-8cfa-66ad7bd95c95">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:findAllDiplomasWithCompetitorsRequest>
+         <wsdl:token>secrettoken123</wsdl:token>
+      </wsdl:findAllDiplomasWithCompetitorsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                        <con:assertion type="SOAP Response" id="b7323819-1dc7-449f-83e6-c8220651e8c4"
+                                       name="SOAP Response"/>
+                        <con:assertion type="XPath Match" id="c90ed130-5a72-4123-9c9f-d05b0cc71723" name="XPath Match">
+                            <con:configuration>
+                                <path>declare namespace sp2='http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl';
+                                    //sp2:diplomaCompetitor[1]
+                                </path>
+                                <content><![CDATA[<ns2:diplomaCompetitor xmlns:ns2="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <ns2:id>0</ns2:id>
+  <ns2:event>Tartu Rattaralli</ns2:event>
+  <ns2:timeOfEvent>2018-05-28</ns2:timeOfEvent>
+  <ns2:time>02:22:32</ns2:time>
+  <ns2:placement>234</ns2:placement>
+  <ns2:ageGroup>M18</ns2:ageGroup>
+  <ns2:competitor>
+    <ns2:id>0</ns2:id>
+    <ns2:name>Toomas Uba</ns2:name>
+    <ns2:personalCode>38120402813</ns2:personalCode>
+  </ns2:competitor>
+</ns2:diplomaCompetitor>]]></content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="Schema Compliance" id="f809b05b-0cb9-4422-be11-5bb08b22fc3e"
+                                       name="Schema Compliance">
+                            <con:configuration>
+                                <definition/>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig mustUnderstand="NONE" version="200508"
+                                       action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/findAllDiplomasWithCompetitorsRequest"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="request" id="fc23ee4c-7619-43c7-b5fe-800df8ad621e" name="findDiplomaById - Request 1">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>DiplomaPortSoap11</con:interface>
+                    <con:operation>findDiplomaById</con:operation>
+                    <con:request name="findDiplomaById - Request 1" outgoingWss="" incomingWss="" timeout=""
+                                 sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false"
+                                 wssPasswordType="" id="232d2a62-f7c9-4137-9d46-951dbc35d3b3">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080/ws</con:endpoint>
+                        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:findDiplomaByIdRequest>
+         <wsdl:token>secrettoken123</wsdl:token>
+         <wsdl:id>0</wsdl:id>
+      </wsdl:findDiplomaByIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+                        <con:assertion type="SOAP Response" id="0c025777-937a-4c09-9053-a9f2e0b55e9f"
+                                       name="SOAP Response"/>
+                        <con:assertion type="XPath Match" id="4d7f1c5c-0af9-43a6-83b5-909e79c75336" name="XPath Match">
+                            <con:configuration>
+                                <path>declare namespace sp2='http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl';
+                                    //sp2:diploma[1]
+                                </path>
+                                <content><![CDATA[<ns2:diploma xmlns:ns2="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <ns2:id>0</ns2:id>
+  <ns2:event>Tartu Rattaralli</ns2:event>
+  <ns2:timeOfEvent>2018-05-28</ns2:timeOfEvent>
+  <ns2:time>02:22:32</ns2:time>
+  <ns2:placement>234</ns2:placement>
+  <ns2:ageGroup>M18</ns2:ageGroup>
+  <ns2:competitor>
+    <ns2:id>0</ns2:id>
+    <ns2:name>Toomas Uba</ns2:name>
+    <ns2:personalCode>38120402813</ns2:personalCode>
+  </ns2:competitor>
+</ns2:diploma>]]></content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="Schema Compliance" id="5026ee77-e29e-4c14-90a6-1dd4cb49285f"
+                                       name="Schema Compliance">
+                            <con:configuration>
+                                <definition/>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig mustUnderstand="NONE" version="200508"
+                                       action="http://www.ttu.ee/idu0075/2018/ws/cyclingresults/wsdl/DiplomaPort/findDiplomaByIdRequest"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:properties/>
+        </con:testCase>
+        <con:properties/>
+    </con:testSuite>
+    <con:properties/>
+    <con:wssContainer/>
+    <con:oAuth2ProfileContainer/>
+    <con:oAuth1ProfileContainer/>
+    <con:sensitiveInformation/>
+</con:soapui-project>

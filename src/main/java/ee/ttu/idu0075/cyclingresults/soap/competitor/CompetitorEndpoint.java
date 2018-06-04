@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Endpoint
 public class CompetitorEndpoint {
@@ -63,5 +64,20 @@ public class CompetitorEndpoint {
             return response;
         }
         throw new RuntimeException("Invalid token!");
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "searchCompetitorsRequest")
+    @ResponsePayload
+    public SearchCompetitorsResponse searchCompetitors(@RequestPayload SearchCompetitorsRequest request) {
+        if (request.getToken().equalsIgnoreCase("secrettoken123")) {
+            SearchCompetitorsResponse response = new SearchCompetitorsResponse();
+            response.getCompetitor().addAll(competitorService.findAll()
+                    .stream()
+                    .filter(competitor -> request.getName() == null || competitor.getName().contains(request.getName()))
+                    .filter(competitor -> request.getPersonalCode() == null || competitor.getPersonalCode().contains(request.getPersonalCode()))
+                    .collect(Collectors.toList()));
+            return response;
+        }
+        throw new RuntimeException("Invalid token");
     }
 }

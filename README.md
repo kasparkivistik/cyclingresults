@@ -151,6 +151,10 @@ Teenus tagastab kõik diplomid, kuhu on määratud võistleja. Seega tagastataks
 
 ![addProduct](src/main/resources/assets/findAllDiplomasWithCompetitors.png)
 
+9. searchCompetitors
+
+Teenus tagastab kõik võistlejad, mis vastavad päringus edastatud väljade tulemusele. Filtrile.
+![searchCompetitors](src/main/resources/assets/searchCompetitors.png)
 
 ## REST
 
